@@ -1,0 +1,27 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sidebar-frame {
+  width: 248px;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.page-content {
+  margin-left: 248px;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+.sidebar-collapsed .page-content {
+  margin-left: 72px;
+}
+
+.sidebar-collapsed .sidebar-frame {
+  width: 72px;
+}
