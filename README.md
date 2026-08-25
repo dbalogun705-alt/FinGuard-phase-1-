@@ -1,2 +1,2 @@
-# FinGuard-phase-1-
-A financial product that users withdebtpressure and limited cashflow buffers
+ # FinGuard-phase-1-
+A financial product that users with debt pressure and limited cashflow buffers
