@@ -1,0 +1,193 @@
+:root {
+  --finguard-blue: #3646f5;
+  --finguard-blue-hover: #2936cc;
+  --finguard-bg: #fdf7f2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--finguard-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  min-height: 100vh;
+  font-size: 0.92rem;
+  overflow-y: auto;
+}
+
+/* Centre the auth screen and keep it inside the viewport */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.75rem;
+}
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--finguard-blue);
+  text-decoration: none;
+}
+
+.auth-logo img {
+  width: 28px;
+  height: 28px;
+}
+
+.link-blue {
+  color: var(--finguard-blue);
+}
+.link-blue:hover {
+  color: var(--finguard-blue-hover);
+}
+
+/* Card Container Styles */
+.auth-card {
+  max-width: 430px;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: none;
+  background: #ffffff;
+}
+
+.auth-card .card-body {
+  padding: 1.25rem 1.4rem !important;
+}
+
+.auth-header-bar {
+  background-color: var(--finguard-blue);
+  height: 34px;
+}
+
+/* Tighten the utility spacing used inside the cards */
+.auth-card .mb-4 {
+  margin-bottom: 0.85rem !important;
+}
+.auth-card .mb-3 {
+  margin-bottom: 0.7rem !important;
+}
+
+.btn-finguard {
+  background-color: var(--finguard-blue);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+.btn-finguard:hover {
+  background-color: var(--finguard-blue-hover);
+  color: #ffffff;
+}
+
+.btn-social {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #374151;
+  font-weight: 500;
+  padding: 8px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+.btn-social:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* Horizontal Divider with Text */
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 0.9rem 0;
+}
+.divider-text::before,
+.divider-text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+.divider-text span {
+  padding: 0 12px;
+  color: var(--finguard-blue);
+  font-weight: 500;
+}
+
+/* Form Fields */
+.form-control-icon {
+  position: relative;
+}
+.form-control-icon input {
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  height: 42px;
+  border-radius: 8px;
+  border-color: #d1d5db;
+}
+.form-control-icon .icon-left {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  z-index: 4;
+}
+.form-control-icon .icon-right {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  cursor: pointer;
+  z-index: 4;
+}
+
+/* OTP Box Layout */
+.otp-input-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.otp-input-group input {
+  width: 44px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1.5px solid #d1d5db;
+}
+.otp-input-group input:focus {
+  border-color: var(--finguard-blue);
+  box-shadow: 0 0 0 0.2rem rgba(54, 70, 245, 0.15);
+}
+
+.otp-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(54, 70, 245, 0.15);
+  color: var(--finguard-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
