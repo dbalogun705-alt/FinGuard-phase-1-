@@ -1,0 +1,489 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sidebar-frame {
+  width: 248px;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.page-content {
+  margin-left: 248px;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+.overview-page {
+    min-height: 100vh;
+    width: calc(100% - 248px);
+    padding: 24px 32px;
+    background: #ffffff;
+}
+
+.sidebar-collapsed .page-content {
+  margin-left: 72px;
+}
+/* =====================================================
+   FINGUARD - DEBT BURDEN & DTI
+===================================================== */
+
+
+/* =====================================================
+   MAIN PAGE
+===================================================== */
+
+.dti-page {
+
+    width: 100%;
+
+    max-width: 1054px;
+
+    min-height: 789px;
+
+    padding: 32px 28px;
+
+    background: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    color: #555555;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.dti-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+
+.dti-header h1 {
+
+    margin: 0;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: #303030;
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.dti-profile {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #B98767;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   DTI SUMMARY
+===================================================== */
+
+.dti-summary {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 38px;
+
+    margin-left: 25px;
+
+    margin-bottom: 39px;
+}
+
+
+/* =====================================================
+   CHART AREA
+===================================================== */
+
+.dti-chart-area {
+
+    width: 180px;
+
+    text-align: center;
+}
+
+
+.dti-chart-area h2 {
+
+    margin: 0 0 8px;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    color: #777777;
+}
+
+
+/* =====================================================
+   CIRCLE CONTAINER
+===================================================== */
+
+.dti-chart {
+
+    width: 170px;
+
+    height: 170px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   THE ACTUAL DTI RING
+===================================================== */
+
+.dti-ring {
+
+    width: 160px;
+
+    height: 160px;
+
+    position: absolute;
+
+    top: 5px;
+
+    left: 5px;
+
+    border-radius: 50%;
+
+    /*
+        
+    */
+
+    background:
+        conic-gradient(
+            from 90deg,
+            #FF3B3B 0deg 75deg,
+            #32C759 75deg 360deg
+        );
+
+}
+
+
+/* =====================================================
+   WHITE CENTER
+===================================================== */
+
+.dti-ring-center {
+
+    position: absolute;
+
+    width: 126px;
+
+    height: 126px;
+
+    top: 17px;
+
+    left: 17px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =====================================================
+   CENTER NUMBER
+===================================================== */
+
+.dti-ring-center strong {
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #3187FF;
+}
+
+
+/* =====================================================
+   CENTER STATUS
+===================================================== */
+
+.dti-ring-center span {
+
+    margin-top: 4px;
+
+    font-size: 13px;
+
+    color: #3187FF;
+}
+
+
+/* =====================================================
+   EXPLANATION
+===================================================== */
+
+.dti-explanation {
+
+    padding-top: 25px;
+}
+
+
+.dti-explanation h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 24px;
+
+    font-weight: 500;
+
+    color: #777777;
+}
+
+
+.dti-explanation h4 {
+
+    margin: 0 0 18px;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: #888888;
+}
+
+
+.dti-explanation p {
+
+    max-width: 230px;
+
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    color: #777777;
+}
+
+
+/* =====================================================
+   INFORMATION BARS
+===================================================== */
+
+.dti-information {
+
+    width: 52%;
+
+    margin-left: 28px;
+
+    margin-top: 5px;
+}
+
+
+.dti-info-row {
+
+    width: 100%;
+
+    height: 42px;
+
+    border: none;
+
+    padding: 0 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.dti-info-row span {
+
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+
+.dti-info-row strong {
+
+    font-size: 16px;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   BAR COLORS
+===================================================== */
+
+.dti-debt-row {
+
+    background: #FF393F;
+}
+
+
+.dti-income-row {
+
+    background: #32C759;
+}
+
+
+.dti-ratio-row {
+
+    background: #2931FD;
+}
+
+
+.dti-risk-row {
+
+    background: #FFC400;
+}
+
+
+/* =====================================================
+   BAR HOVER
+===================================================== */
+
+.dti-info-row:hover {
+
+    opacity: 0.9;
+
+    transform: translateX(2px);
+}
+
+
+.dti-info-row:active {
+
+    transform: scale(0.99);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .dti-page {
+
+        padding: 25px 20px;
+    }
+
+
+    .dti-summary {
+
+        margin-left: 0;
+
+        gap: 20px;
+    }
+
+
+    .dti-information {
+
+        width: 75%;
+
+        margin-left: 0;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dti-header h1 {
+
+        font-size: 21px;
+    }
+
+
+    .dti-summary {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .dti-explanation {
+
+        padding-top: 0;
+    }
+
+
+    .dti-explanation p {
+
+        margin: auto;
+    }
+
+
+    .dti-information {
+
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    .dti-info-row span {
+
+        font-size: 16px;
+    }
+
+
+    .dti-info-row strong {
+
+        font-size: 14px;
+    }
+
+}
