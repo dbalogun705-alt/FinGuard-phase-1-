@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinGuard - Verify Your Number</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css folder/auth-styles.css" rel="stylesheet">
+</head>
+<body>
+ <div class="auth-screen">
+
+  <a href="../index.html" class="auth-logo">
+    <img src="../Images/Logo.svg" alt="FinGuard logo" /> FinGuard
+  </a>
+
+  <div class="card auth-card">
+    <div class="auth-header-bar d-flex align-items-center justify-content-center text-white fw-semibold">
+      Verify Your Number
+    </div>
+
+    <div class="card-body text-center">
+      <!-- Icon Graphic -->
+      <div class="otp-icon-circle mb-3">
+        <i class="bi bi-grid-3x3-gap-fill fs-2"></i>
+      </div>
+
+      <p class="text-muted small mb-4">Enter the six digits sent to your phone</p>
+
+      <!--
+        NOTE: the backend has no verification / OTP endpoint yet. This screen
+        is UI-only for now and simply continues to sign in. Wire it up once the
+        backend team confirms the verification flow.
+      -->
+      <form id="verifyForm">
+        <div class="otp-input-group mb-3" id="otpGroup">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 1">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 2">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 3">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 4">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 5">
+          <input type="text" inputmode="numeric" maxlength="1" class="form-control" aria-label="Digit 6">
+        </div>
+
+        <div class="small text-muted mb-4">
+          Resend code in <span class="fw-medium">00:30</span>
+        </div>
+
+        <button type="submit" class="btn btn-finguard w-100 py-2 fs-6 mb-3">Verify Account</button>
+      </form>
+
+      <p class="small text-muted m-0">This code expires in 10 Minutes</p>
+    </div>
+  </div>
+
+ </div>
+
+  <script>
+    (function () {
+      var inputs = Array.prototype.slice.call(
+        document.querySelectorAll("#otpGroup input")
+      );
+      inputs.forEach(function (input, i) {
+        input.addEventListener("input", function () {
+          input.value = input.value.replace(/\D/g, "").slice(0, 1);
+          if (input.value && inputs[i + 1]) inputs[i + 1].focus();
+        });
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Backspace" && !input.value && inputs[i - 1]) {
+            inputs[i - 1].focus();
+          }
+        });
+      });
+
+      // No OTP endpoint yet – continue to sign in.
+      document
+        .getElementById("verifyForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          window.location.href = "signin.html";
+        });
+    })();
+  </script>
+</body>
+</html>
