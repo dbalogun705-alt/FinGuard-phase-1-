@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css folder/Shortfall.css" />
+    <title>FinGuard Shortfall Forecast</title>
+  </head>
+  <body>
+    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame">
+    </iframe>
+
+    <main class="page-content">
+      <!--PAGE HEADER-->
+      <div
+        class="page-header container d-flex align-items-center fw-bold font-Roboto"
+      >
+        <h1 class="pt-4 px-3 mb-0 pb-2" id="header-text">Shortfall Forecast</h1>
+        <span class="image ms-auto pb-2 pt-4 pe-3">
+          <img src="../Images/report image.svg" alt="Report" />
+        </span>
+      </div>
+
+      <!--SUB-HEADER-->
+      <div class="sub-header">
+        <img
+          src="../Images/report chart.svg"
+          alt="Six-month shortfall chart"
+          class="px-3"
+        />
+        <p class="chart-text">
+          <strong>No immediate shortfalls</strong>
+          <span>Keep monitoring to stay ahead of potential risks</span>
+        </p>
+      </div>
+      <img src="../Images/surplus.svg" class="px-5 pt-3" />
+
+      <!--PAGE TABLE-->
+      <div class="align-items-center container">
+        <h2 class="pt-5 px-3">Next 6 Months</h2>
+        <br /><br />
+
+        <div class="px-3 table-responsive">
+          <table class="table health-table">
+            <tbody>
+              <tr>
+                <td>Month 1</td>
+                <td class="status healthy">Healthy</td>
+              </tr>
+              <tr>
+                <td>Month 2</td>
+                <td class="status healthy">Healthy</td>
+              </tr>
+              <tr>
+                <td>Month 3</td>
+                <td class="status watch">Watch</td>
+              </tr>
+              <tr>
+                <td>Month 4</td>
+                <td class="status watch">Watch</td>
+              </tr>
+              <tr>
+                <td>Month 5</td>
+                <td class="status healthy">Healthy</td>
+              </tr>
+              <tr>
+                <td>Month 6</td>
+                <td class="status healthy">Healthy</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button
+            type="button"
+            class="forecast-button btn btn-primary bg-white text-primary border-primary fw-bold mx-5 px-4 py-2 mb-3 mt-3"
+          >
+            View full Forecast
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="Shortfall.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrV/cXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

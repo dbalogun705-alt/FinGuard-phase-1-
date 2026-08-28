@@ -1,0 +1,123 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sidebar-frame {
+  width: 248px;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.page-content {
+  margin-left: 248px;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+.sidebar-collapsed .page-content {
+  margin-left: 72px;
+}
+
+.sidebar-collapsed .sidebar-frame {
+  width: 72px;
+}
+
+.sub-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min(100% - 2rem, 700px);
+  margin: 1rem 0 0 1rem;
+}
+
+.sub-header > img {
+  display: block;
+  width: min(100%, 444px);
+  height: auto;
+  flex: 0 1 444px;
+}
+
+.chart-text {
+  display: flex;
+  flex: 0 1 190px;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  color: #ff7518;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.chart-text strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .sub-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sub-header > img {
+    width: 100%;
+  }
+}
+
+.health-table {
+  width: 100%;
+  max-width: 460px;
+  border: 2px solid #999;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+.health-table td {
+  padding: 14px 18px;
+  border-bottom: 2px solid #999;
+}
+
+.health-table td:last-child {
+  text-align: right;
+}
+
+.health-table tr:last-child td {
+  border-bottom: none;
+}
+
+.health-table td.healthy {
+  color: #34a853;
+}
+
+.health-table td.watch {
+  color: #ff7518;
+}
+
+.forecast-button {
+  width: 340.4px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: #2931fd !important;
+  border-color: #2931fd;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #6d6d6d;
+  font-size: 24px;
+  line-height: 19.6px;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: orange;
+  font-size: 16px;
+  line-height: 19.6px;
+}
