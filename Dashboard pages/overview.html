@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+    <link rel="stylesheet" href="../css folder/overview.css" />
+    <title>FinGuard - Overview</title>
+  </head>
+  <body>
+    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame">
+    </iframe>
+
+    <main class="page-content overview-page">
+           <!-- TOP HEADER -->
+    <header class="top-header">
+
+        <div>
+            <h1>Good Morning, John</h1>
+            <p>Here is your Financial Health Score</p>
+        </div>
+
+        <div class="header-icons">
+
+            <button class="icon-button" id="notificationBtn">
+                <i class="bi bi-bell"></i>
+            </button>
+
+            <button class="icon-button" id="profileBtn">
+                <i class="bi bi-person"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- FINANCIAL HEALTH SCORE -->
+    <section class="health-section">
+
+        <div class="section-heading">
+
+            <h2>Financial Health score</h2>
+
+            <button class="details-button" id="scoreDetails">
+                View Details
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+        </div>
+
+
+        <!-- GAUGE -->
+        <div class="gauge-container">
+
+            <svg class="health-gauge"
+                 viewBox="0 0 200 110">
+
+                <!-- Grey background -->
+                <path
+                    class="gauge-background"
+                    d="M 20 100 A 80 80 0 0 1 180 100"
+                />
+
+                <!-- Blue 75% -->
+                <path
+                    class="gauge-progress"
+                    d="M 20 100 A 80 80 0 0 1 180 100"
+                    pathLength="100"
+                />
+
+            </svg>
+
+            <div class="gauge-content">
+
+                <strong>75%</strong>
+
+                <span>Good</span>
+
+            </div>
+
+            <p>You're on track. Keep it up</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINANCIAL INFORMATION -->
+    <section class="financial-info">
+
+        <div class="financial-item">
+
+            <h6>Monthly Income</h6>
+
+            <h3 class="green-text">
+                ₦1,250,000
+            </h3>
+
+            <small>This month</small>
+
+        </div>
+
+
+        <div class="financial-item">
+
+            <h6>Total Obligations</h6>
+
+            <h3 class="orange-text">
+                ₦115,500
+            </h3>
+
+            <small>This month</small>
+
+        </div>
+
+
+        <div class="financial-item">
+
+            <h6>Cashflow Buffer</h6>
+
+            <h3 class="green-text">
+                ₦630,000
+            </h3>
+
+            <small>3.2 Months</small>
+
+        </div>
+
+
+        <div class="financial-item">
+
+            <h6>DTI Ratio</h6>
+
+            <h3 class="green-text">
+                0.75
+            </h3>
+
+            <small class="moderate">
+                Moderate
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOWER CONTENT -->
+    <section class="lower-section">
+
+
+        <!-- RECENT ALERT -->
+        <div class="recent-alert">
+
+            <h3>Recent Alert</h3>
+
+            <div class="alert-line"></div>
+
+            <h5>Cash buffer is getting thin</h5>
+
+            <p>
+                Your current buffer may not cover more
+                than 2 months expenses.
+            </p>
+
+            <button class="details-button" id="alertDetails">
+                View Details
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+
+            <h3>Quick actions</h3>
+
+
+            <button class="action" data-action="assessment">
+
+                <i class="bi bi-clipboard-check"></i>
+
+                <div>
+                    <h5>Complete Assessment</h5>
+                    <p>Update your financial information</p>
+                </div>
+
+            </button>
+
+
+            <button class="action" data-action="debt">
+
+                <i class="bi bi-credit-card"></i>
+
+                <div>
+                    <h5>View Debt & DTI</h5>
+                    <p>Understand your debt burden</p>
+                </div>
+
+            </button>
+
+
+            <button class="action" data-action="cashflow">
+
+                <i class="bi bi-shield-plus"></i>
+
+                <div>
+                    <h5>View Cashflow Buffer</h5>
+                    <p>See your remaining financial capacity</p>
+                </div>
+
+            </button>
+
+
+            <button class="action" data-action="forecast">
+
+                <i class="bi bi-graph-up-arrow"></i>
+
+                <div>
+                    <h5>View Shortfall Forecast</h5>
+                    <p>See potential future shortfall</p>
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- JavaScript -->
+<script src="overview.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,367 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sidebar-frame {
+  width: 248px;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.page-content {
+  margin-left: 248px;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+.overview-page {
+    min-height: 100vh;
+    width: calc(100% - 248px);
+    padding: 24px 32px;
+    background: #ffffff;
+}
+
+.sidebar-collapsed .page-content {
+  margin-left: 72px;
+}
+/* =================================
+   PROFILE & SETTINGS
+================================= */
+
+.settings-page {
+    width: 100%;
+    max-width: 1024px;
+    min-height: 770px;
+
+    padding: 20px 18px;
+
+    background: #ffffff;
+}
+
+
+/* =================================
+   SETTINGS HEADER
+================================= */
+
+.settings-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 38px;
+}
+
+.settings-header h1 {
+    font-size: 25px;
+
+    font-weight: 600;
+
+    color: #5d5d5d;
+
+    margin-bottom: 25px;
+}
+
+.settings-header p {
+    font-size: 13px;
+
+    color: #666666;
+
+    margin: 0;
+}
+
+
+/* =================================
+   PROFILE IMAGE
+================================= */
+
+.profile-picture {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: #d9d9d9;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #555555;
+
+    font-size: 15px;
+}
+
+
+/* =================================
+   SETTINGS LIST
+================================= */
+
+.settings-list {
+    width: 80%;
+
+    margin: 0 auto;
+}
+
+
+/* =================================
+   SETTING ROW
+================================= */
+
+.setting-row {
+    width: 100%;
+
+    height: 42px;
+
+    border: 1px solid #aadab7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    margin-bottom: 1px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* Hover effect */
+
+.setting-row:hover {
+    background: #f8fff9;
+}
+
+
+/* Text inside row */
+
+.setting-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 15px;
+
+    color: #111111;
+}
+
+
+/* Small arrow before text */
+
+.small-arrow {
+    font-size: 16px;
+
+    color: #333333;
+}
+
+
+/* Right arrow */
+
+.setting-arrow {
+    font-size: 20px;
+
+    color: #333333;
+}
+
+
+/* =================================
+   DARK MODE ROW
+================================= */
+
+.dark-mode-row {
+    cursor: default;
+}
+
+
+/* =================================
+   SWITCH
+================================= */
+
+.switch {
+    position: relative;
+
+    display: inline-block;
+
+    width: 24px;
+    height: 14px;
+}
+
+
+/* Hide normal checkbox */
+
+.switch input {
+    display: none;
+}
+
+
+/* Switch background */
+
+.slider {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #d0d0d0;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* Switch circle */
+
+.slider:before {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    left: 1px;
+    top: 1px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+}
+
+
+/* When Dark Mode is ON */
+
+.switch input:checked + .slider {
+    background: #2931fd;
+}
+
+
+.switch input:checked + .slider:before {
+    transform: translateX(10px);
+}
+
+
+/* =================================
+   LOG OUT
+================================= */
+
+.logout-row {
+    margin-top: 44px;
+
+    color: #e55a5a;
+}
+
+.logout-row .setting-name {
+    color: #e55a5a;
+}
+
+
+/* =================================
+   DARK MODE
+================================= */
+
+body.dark-mode {
+    background: #181818;
+
+    color: #ffffff;
+}
+
+
+body.dark-mode .settings-page {
+    background: #181818;
+}
+
+
+body.dark-mode .settings-header h1 {
+    color: #ffffff;
+}
+
+
+body.dark-mode .settings-header p {
+    color: #aaaaaa;
+}
+
+
+body.dark-mode .setting-row {
+    background: #242424;
+
+    border-color: #555555;
+}
+
+
+body.dark-mode .setting-name {
+    color: #ffffff;
+}
+
+
+body.dark-mode .setting-arrow,
+body.dark-mode .small-arrow {
+    color: #ffffff;
+}
+
+
+body.dark-mode .setting-row:hover {
+    background: #2d2d2d;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+
+    .settings-page {
+        padding: 20px;
+    }
+
+    .settings-list {
+        width: 100%;
+    }
+
+    .settings-header h1 {
+        font-size: 21px;
+    }
+
+    .settings-header p {
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .settings-header {
+        margin-bottom: 25px;
+    }
+
+    .setting-name {
+        font-size: 13px;
+    }
+
+    .setting-arrow {
+        font-size: 17px;
+    }
+
+}
