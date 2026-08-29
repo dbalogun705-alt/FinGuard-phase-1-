@@ -1,33 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../css folder/report.css" />
-    <title>FinGuard Reports</title>
-  </head>
-  <body>
-    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame">
-    </iframe>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinGuard–Reports</title>
+  <link rel="icon" type="image/svg+xml" href="../Images/Logo.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="../css folder/dashboard.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css folder/report.css">
+</head>
+<body>
+  <div class="dashboard" id="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../Images/Logo.svg" alt="FinGuard logo" />
+        <span class="sidebar-brand">FinGuard</span>
+        <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" data-sidebar-toggle>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+      <ul class="sidebar-nav">
+        <li><a class="sidebar-link" href="../index.html"><img src="../Images/home icon.svg" alt="" /><span>Overview</span></a></li>
+        <li><a class="sidebar-link" href="assessment-income.html"><img src="../Images/Video.svg" alt="" /><span>Assessment</span></a></li>
+        <li><a class="sidebar-link" href="#"><img src="../Images/computing.svg" alt="" /><span>Debt &amp; DTI</span></a></li>
+        <li><a class="sidebar-link" href="cashflow-buffer.html"><img src="../Images/status-up.svg" alt="" /><span>Cashflow Buffer</span></a></li>
+        <li><a class="sidebar-link" href="Shortfall.html"><img src="../Images/align-bottom.svg" alt="" /><span>Shortfall Forecast</span></a></li>
+        <li><a class="sidebar-link" href="#"><img src="../Images/trend-down.svg" alt="" /><span>Risk Explanation</span></a></li>
+        <li><a class="sidebar-link active" href="report.html"><img src="../Images/book-saved.svg" alt="" /><span>Reports</span></a></li>
+        <li><a class="sidebar-link" href="#"><img src="../Images/setting-2.svg" alt="" /><span>Profile &amp; Settings</span></a></li>
+        <li><a class="sidebar-link" href="#"><img src="../Images/Icon.svg" alt="" /><span>Help</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a class="sidebar-link" href="signin.html"><img src="../Images/Logout.svg" alt="" /><span>Log out</span></a>
+      </div>
+    </aside>
 
-    <main class="page-content">
+
+    <main class="dashboard-main">
       <!--PAGE HEADER-->
       <div
         class="page-header container d-flex align-items-center fw-bold font-Roboto"
       >
-        <h1 class="pt-4 px-4 mb-0 pb-2" id="header-text">Reports</h1>
+        <h1 class=" report-h
+        pt-4 px-4 mb-0 pb-2" id="header-text">Reports</h1>
         <span class="image ms-auto pb-2 pt-4 pe-3">
           <img src="../Images/report image.svg" alt="Report" />
         </span>
       </div>
       <div>
-        <p class="pt-3 mx-2 px-4 fw-bold">
+        <p class="report-p pt-3 mx-2 px-4 fw-bold">
           Download and share your financial insights
         </p>
 
@@ -99,5 +123,7 @@
         </div>
       </div>
     </main>
+    <script src="../javascript/api.js"></script>
+  <script src="../javascript/dashboard.js"></script> 
   </body>
 </html>
