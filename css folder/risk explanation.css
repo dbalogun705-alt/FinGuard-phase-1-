@@ -1,350 +1,267 @@
-html,
-body {
-  margin: 0;
-  overflow-x: hidden;
-}
-
-.sidebar-frame {
-  width: 248px;
-  height: 100vh;
-  border: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
-.page-content {
-  margin-left: 248px;
-  transition: margin-left 0.25s ease-in-out;
-}
-
-.overview-page {
-    min-height: 100vh;
-    width: calc(100% - 248px);
-    padding: 24px 32px;
-    background: #ffffff;
-}
-
-.sidebar-collapsed .page-content {
-  margin-left: 72px;
-}
-
 /* =====================================================
    FINGUARD - RISK EXPLANATION
 ===================================================== */
-
 
 /* =========================
    PAGE
 ========================= */
 
 .risk-page {
+  width: 100%;
 
-    width: 100%;
+  max-width: 1024px;
 
-    max-width: 1024px;
+  min-height: 770px;
 
-    min-height: 770px;
+  background: #ffffff;
 
-    background: #ffffff;
+  padding: 25px 28px;
 
-    padding: 25px 28px;
+  font-family: Arial, sans-serif;
 
-    font-family: Arial, sans-serif;
-
-    color: #555555;
+  color: #555555;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
 .risk-header {
+  display: flex;
 
-    display: flex;
+  align-items: center;
 
-    align-items: center;
+  justify-content: space-between;
 
-    justify-content: space-between;
-
-    margin-bottom: 49px;
+  margin-bottom: 49px;
 }
-
 
 .risk-header h1 {
+  margin: 0;
 
-    margin: 0;
+  font-size: 25px;
 
-    font-size: 25px;
+  font-weight: 700;
 
-    font-weight: 700;
-
-    color: #666666;
+  color: #666666;
 }
-
 
 /* =========================
    PROFILE
 ========================= */
 
 .risk-profile {
+  width: 35px;
 
-    width: 35px;
+  height: 35px;
 
-    height: 35px;
+  border-radius: 50%;
 
-    border-radius: 50%;
+  background: #b98767;
 
-    background: #b98767;
+  color: white;
 
-    color: white;
+  display: flex;
 
-    display: flex;
+  align-items: center;
 
-    align-items: center;
+  justify-content: center;
 
-    justify-content: center;
-
-    font-size: 17px;
+  font-size: 17px;
 }
-
 
 /* =========================
    CONTENT
 ========================= */
 
 .risk-content {
+  width: 357px;
 
-    width: 357px;
-
-    margin-left: 0;
+  margin-left: 0;
 }
-
 
 /* =========================
    EACH ITEM
 ========================= */
 
 .risk-item {
+  width: 357px;
 
-    width: 357px;
-
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
-
 
 /* =========================
    QUESTION BOX
 ========================= */
 
 .risk-question {
+  width: 357px;
 
-    width: 357px;
+  min-height: 54px;
 
-    min-height: 54px;
+  border: none;
 
-    border: none;
+  background: #e5e5e5;
 
-    background: #e5e5e5;
+  padding: 8px 12px;
 
-    padding: 8px 12px;
+  display: flex;
 
-    display: flex;
+  align-items: center;
 
-    align-items: center;
+  justify-content: space-between;
 
-    justify-content: space-between;
+  text-align: left;
 
-    text-align: left;
+  color: #2222ff;
 
-    color: #2222ff;
+  cursor: pointer;
 
-    cursor: pointer;
-
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
-
 
 /* Text */
 
 .risk-question span {
+  font-size: 15px;
 
-    font-size: 15px;
+  line-height: 1.1;
 
-    line-height: 1.1;
-
-    font-weight: 400;
+  font-weight: 400;
 }
-
 
 /* Arrow */
 
 .risk-question i {
+  font-size: 17px;
 
-    font-size: 17px;
+  margin-left: 10px;
 
-    margin-left: 10px;
-
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
-
 
 /* Hover */
 
 .risk-question:hover {
-
-    background: #dddddd;
+  background: #dddddd;
 }
-
 
 /* =========================
    ROTATE ARROW WHEN OPEN
 ========================= */
 
 .risk-question[aria-expanded="true"] i {
-
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
-
 
 /* =========================
    ANSWER
 ========================= */
 
 .risk-answer {
+  background: #f5f5f5;
 
-    background: #f5f5f5;
+  padding: 12px 15px;
 
-    padding: 12px 15px;
-
-    border-left: 3px solid #2222ff;
+  border-left: 3px solid #2222ff;
 }
-
 
 .risk-answer p {
+  margin: 0;
 
-    margin: 0;
+  font-size: 13px;
 
-    font-size: 13px;
+  line-height: 1.6;
 
-    line-height: 1.6;
-
-    color: #666666;
+  color: #666666;
 }
-
 
 /* =========================
    BOTTOM INFORMATION
 ========================= */
 
 .risk-info {
+  width: 357px;
 
-    width: 357px;
-
-    margin-top: 39px;
+  margin-top: 39px;
 }
-
 
 /* =========================
    BOTTOM BUTTON
 ========================= */
 
 .risk-info-button {
+  width: 357px;
 
-    width: 357px;
+  min-height: 54px;
 
-    min-height: 54px;
+  border: none;
 
-    border: none;
+  background: #e5e5e5;
 
-    background: #e5e5e5;
+  padding: 8px 12px;
 
-    padding: 8px 12px;
+  display: flex;
 
-    display: flex;
+  align-items: center;
 
-    align-items: center;
+  justify-content: space-between;
 
-    justify-content: space-between;
+  text-align: left;
 
-    text-align: left;
+  color: #2222ff;
 
-    color: #2222ff;
+  cursor: pointer;
 
-    cursor: pointer;
-
-    transition: 0.2s ease;
+  transition: 0.2s ease;
 }
-
 
 .risk-info-button span {
+  font-size: 12px;
 
-    font-size: 12px;
-
-    line-height: 1.2;
+  line-height: 1.2;
 }
-
 
 .risk-info-button i {
-
-    font-size: 17px;
+  font-size: 17px;
 }
-
 
 /* Hover */
 
 .risk-info-button:hover {
-
-    background: #dddddd;
+  background: #dddddd;
 }
-
 
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 600px) {
+  .risk-page {
+    padding: 25px 20px;
+  }
 
-    .risk-page {
+  .risk-header h1 {
+    font-size: 22px;
+  }
 
-        padding: 25px 20px;
-    }
+  .risk-content {
+    width: 100%;
+  }
 
+  .risk-item {
+    width: 100%;
+  }
 
-    .risk-header h1 {
+  .risk-question {
+    width: 100%;
+  }
 
-        font-size: 22px;
-    }
+  .risk-info {
+    width: 100%;
+  }
 
-
-    .risk-content {
-
-        width: 100%;
-    }
-
-
-    .risk-item {
-
-        width: 100%;
-    }
-
-
-    .risk-question {
-
-        width: 100%;
-    }
-
-
-    .risk-info {
-
-        width: 100%;
-    }
-
-
-    .risk-info-button {
-
-        width: 100%;
-    }
-
+  .risk-info-button {
+    width: 100%;
+  }
 }
