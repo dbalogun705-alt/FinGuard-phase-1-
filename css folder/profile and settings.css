@@ -4,11 +4,10 @@
 
 .settings-page {
   width: 100%;
-  max-width: 1024px;
-  min-height: 770px;
-
-  padding: 20px 18px;
-
+  max-width: 760px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2rem;
   background: #ffffff;
 }
 
@@ -18,29 +17,27 @@
 
 .settings-header {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 38px;
+  margin-bottom: 1.5rem;
 }
 
 .settings-header h1 {
-  font-size: 25px;
-
-  font-weight: 600;
-
-  color: #5d5d5d;
-
-  margin-bottom: 25px;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.2rem;
 }
 
 .settings-header p {
-  font-size: 13px;
-
-  color: #666666;
-
+  font-size: 0.8rem;
+  color: #888;
   margin: 0;
+}
+
+.settings-bell {
+  width: 18px;
+  height: 18px;
 }
 
 /* =================================
@@ -70,9 +67,8 @@
 ================================= */
 
 .settings-list {
-  width: 80%;
-
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 0 1.5rem;
 }
 
 /* =================================
@@ -81,26 +77,17 @@
 
 .setting-row {
   width: 100%;
-
-  height: 42px;
-
-  border: 1px solid #aadab7;
-
+  min-height: 48px;
+  border: 1px solid #e9edf3;
   display: flex;
-
   align-items: center;
-
-  justify-content: space-between;
-
-  padding: 0 14px;
-
+  gap: 0.7rem;
+  padding: 0.45rem 0.7rem;
   margin-bottom: 1px;
-
   background: #ffffff;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  text-align: left;
+  transition: background 0.2s;
 }
 
 /* Hover effect */
@@ -123,6 +110,43 @@
   color: #111111;
 }
 
+.setting-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 5px;
+  background: #e6e7ea;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.setting-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  line-height: 1.15;
+}
+.setting-copy strong {
+  color: #222;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.setting-copy small {
+  color: #777;
+  font-size: 0.62rem;
+  margin-top: 0.15rem;
+}
+.setting-end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.7rem;
+}
+
 /* Small arrow before text */
 
 .small-arrow {
@@ -134,9 +158,11 @@
 /* Right arrow */
 
 .setting-arrow {
-  font-size: 20px;
-
-  color: #333333;
+  margin-left: auto;
+  color: #222;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
 }
 
 /* =================================
@@ -156,14 +182,17 @@
 
   display: inline-block;
 
-  width: 24px;
-  height: 14px;
+  width: 32px;
+  height: 18px;
+  flex: 0 0 32px;
 }
 
 /* Hide normal checkbox */
 
 .switch input {
-  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 /* Switch background */
@@ -192,8 +221,8 @@
 
   position: absolute;
 
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
 
   left: 1px;
   top: 1px;
@@ -212,7 +241,7 @@
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(10px);
+  transform: translateX(14px);
 }
 
 /* =================================
@@ -227,6 +256,34 @@
 
 .logout-row .setting-name {
   color: #e55a5a;
+}
+
+.settings-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 7px;
+  background: #f8eadb;
+  color: #ff7518;
+}
+
+.settings-tip strong,
+.settings-tip small {
+  display: block;
+}
+.settings-tip strong {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.settings-tip small {
+  color: #777;
+  font-size: 0.58rem;
+  margin-top: 0.15rem;
+}
+.tip-icon {
+  font-size: 1.2rem;
 }
 
 /* =================================
