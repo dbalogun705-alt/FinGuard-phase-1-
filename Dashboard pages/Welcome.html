@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css folder/welcome.css" />
+    <title>FinGuard - Welcome</title>
+  </head>
+  <body>
+    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame"></iframe>
+    <main class="page-content">
+       <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg finguard-navbar">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand finguard-logo" href="#">
+                <img src="../Images/Logo.svg" alt="FinGuard Logo">
+            </a>
+
+            <!-- Mobile menu button -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation -->
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            Features
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">
+                            How it Works
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">
+                            Pricing
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="nav-buttons">
+
+                    <button id="loginBtn" class="login-btn">
+                        LOGIN
+                    </button>
+
+                    <button id="navGetStarted" class="get-started-btn">
+                        Get Started
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT SIDE -->
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        Understand Today.
+                        <br>
+                        <span>Protect Tomorrow.</span>
+                    </h1>
+
+                    <p class="hero-text">
+                        FinGuard helps understand your financial
+                        <br class="desktop-break">
+                        position, manage debt, track cashflow
+                        <br class="desktop-break">
+                        and stay ahead of shortfalls
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button id="heroGetStarted"
+                            class="hero-primary-btn">
+                            Get Started
+                        </button>
+
+                        <button id="howWorksBtn"
+                            class="hero-secondary-btn">
+                            See How it Works
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="col-lg-5">
+
+                    <div class="score-card">
+
+                        <p class="score-title">
+                            FinGuard
+                        </p>
+
+                        <p class="score-label">
+                            Financial Health Score
+                        </p>
+
+                        <!-- Score Gauge -->
+                        <div class="score-gauge">
+
+                            <div class="gauge-number">
+                                <strong>72</strong>
+                                <small>/100</small>
+                            </div>
+
+                        </div>
+
+                        <div class="score-message">
+                            Good! You are on track
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section id="features" class="features-section">
+
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Assess -->
+                <div class="col-6 col-lg-3 feature-item">
+
+                    <div class="feature-icon">
+                        ◷
+                    </div>
+
+                    <h3>Assess</h3>
+
+                    <p>
+                        Complete financial assessments in minutes
+                    </p>
+
+                </div>
+
+
+                <!-- Analyze -->
+                <div class="col-6 col-lg-3 feature-item">
+
+                    <div class="feature-icon">
+                        ♧
+                    </div>
+
+                    <h3>Analyze</h3>
+
+                    <p>
+                        Get clear insights on debts, cashflow and risks
+                    </p>
+
+                </div>
+
+
+                <!-- Protect -->
+                <div class="col-6 col-lg-3 feature-item">
+
+                    <div class="feature-icon">
+                        ♧
+                    </div>
+
+                    <h3>Protect</h3>
+
+                    <p>
+                        Understand risk and plan ahead with confidence
+                    </p>
+
+                </div>
+
+
+                <!-- Plan Ahead -->
+                <div class="col-6 col-lg-3 feature-item">
+
+                    <div class="feature-icon">
+                        ◉
+                    </div>
+
+                    <h3>Plan Ahead</h3>
+
+                    <p>
+                        Forecast shortfalls and stay prepared
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- sections for navigation -->
+
+    <section id="how-it-works"></section>
+    <section id="about"></section>
+    <section id="pricing"></section>  
+    </main>
+     <!-- My JavaScript -->
+    <script src="Welcome.js"></script>
+    !-- Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+  </body>
+</html>

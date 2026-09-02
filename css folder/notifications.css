@@ -1,0 +1,528 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sidebar-frame {
+  width: 248px;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.page-content {
+  margin-left: 248px;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+.overview-page {
+    min-height: 100vh;
+    width: calc(100% - 248px);
+    padding: 24px 32px;
+    background: #ffffff;
+}
+
+.sidebar-collapsed .page-content {
+  margin-left: 72px;
+}
+/* =========================================
+   FINGUARD NOTIFICATION
+========================================= */
+
+
+/* PAGE */
+
+.notify-page {
+
+    width: 100%;
+
+    max-width: 1024px;
+
+    min-height: 770px;
+
+    background: #ffffff;
+
+    padding: 20px 25px;
+
+    font-family: Arial, sans-serif;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.notify-topbar {
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+}
+
+
+.notify-menu {
+
+    font-size: 20px;
+
+    color: #555555;
+
+}
+
+
+.notify-bell {
+
+    font-size: 17px;
+
+    color: #555555;
+
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.notify-heading h1 {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin: 0;
+
+    color: #222222;
+
+}
+
+
+.notify-heading p {
+
+    font-size: 11px;
+
+    color: #999999;
+
+    margin-top: 1px;
+
+    margin-bottom: 13px;
+
+}
+
+
+/* =========================================
+   TABS
+========================================= */
+
+.notify-tabs {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    height: 29px;
+
+}
+
+
+.notify-tab {
+
+    background: none;
+
+    border: none;
+
+    padding: 0 0 7px 0;
+
+    font-size: 10px;
+
+    color: #666666;
+
+    cursor: pointer;
+
+}
+
+
+.notify-tab.active {
+
+    color: #2222ff;
+
+    border-bottom: 2px solid #2222ff;
+
+}
+
+
+.notify-filter {
+
+    margin-left: auto;
+
+    border: none;
+
+    background: none;
+
+    color: #666666;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.notify-filter i {
+
+    margin-right: 4px;
+
+}
+
+
+/* =========================================
+   NOTIFICATION LIST
+========================================= */
+
+.notify-list {
+
+    width: 100%;
+
+}
+
+
+/* DATE */
+
+.notify-date {
+
+    font-size: 10px;
+
+    color: #555555;
+
+    margin-top: 19px;
+
+    margin-bottom: 11px;
+
+}
+
+
+/* =========================================
+   NOTIFICATION ITEM
+========================================= */
+
+.notify-item {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    border: 1px solid #eeeeee;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 5px 9px;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.notify-item:hover {
+
+    background: #fafafa;
+
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.notify-icon {
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    margin-right: 10px;
+
+}
+
+
+.notify-icon i {
+
+    font-size: 11px;
+
+}
+
+
+/* Green */
+
+.notify-green {
+
+    background: #d9f7e2;
+
+    color: #30c764;
+
+}
+
+
+/* Red */
+
+.notify-red {
+
+    background: #ffdada;
+
+    color: #ff3d43;
+
+}
+
+
+/* Orange */
+
+.notify-orange {
+
+    background: #fff0d4;
+
+    color: #f2a400;
+
+}
+
+
+/* Blue */
+
+.notify-blue {
+
+    background: #dce8ff;
+
+    color: #4169e1;
+
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.notify-details {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.notify-details h3 {
+
+    margin: 0;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #222222;
+
+}
+
+
+.notify-details p {
+
+    margin: 2px 0 0 0;
+
+    font-size: 8px;
+
+    color: #999999;
+
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.notify-right {
+
+    text-align: right;
+
+    min-width: 80px;
+
+    margin-left: 5px;
+
+}
+
+
+.notify-right strong {
+
+    display: block;
+
+    font-size: 9px;
+
+    font-weight: 400;
+
+    color: #555555;
+
+}
+
+
+.notify-green-text {
+
+    color: #28bd58 !important;
+
+}
+
+
+.notify-right small {
+
+    display: block;
+
+    font-size: 7px;
+
+    color: #999999;
+
+    margin-top: 2px;
+
+}
+
+
+/* =========================================
+   ARROW
+========================================= */
+
+.notify-arrow {
+
+    font-size: 11px;
+
+    color: #555555;
+
+    margin-left: 7px;
+
+}
+
+
+/* =========================================
+   VIEW OLDER
+========================================= */
+
+.notify-older {
+
+    text-align: center;
+
+    margin-top: 10px;
+
+}
+
+
+.notify-older button {
+
+    background: none;
+
+    border: none;
+
+    color: #2222ff;
+
+    font-size: 8px;
+
+    cursor: pointer;
+
+}
+
+
+.notify-older button i {
+
+    font-size: 8px;
+
+    margin-left: 4px;
+
+}
+
+
+/* =========================================
+   OLDER NOTIFICATIONS
+========================================= */
+
+.notify-older-content {
+
+    display: none;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .notify-page {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .notify-tabs {
+
+        gap: 10px;
+
+    }
+
+
+    .notify-tab {
+
+        font-size: 9px;
+
+    }
+
+
+    .notify-filter {
+
+        font-size: 9px;
+
+    }
+
+
+    .notify-details h3 {
+
+        font-size: 10px;
+
+    }
+
+
+    .notify-details p {
+
+        font-size: 7px;
+
+    }
+
+}

@@ -1,20 +1,15 @@
-// =====================================================
+// =====================================
 // FINGUARD - RISK EXPLANATION
-// =====================================================
+// =====================================
 
+// Recommendation button
+const recommendationBtn =
+    document.getElementById("recommendationBtn");
 
-// ================================
-// BOTTOM INFORMATION BUTTON
-// ================================
-
-const riskInfoButton =
-    document.getElementById("riskInfoButton");
-
-
-riskInfoButton.addEventListener("click", function () {
+recommendationBtn.addEventListener("click", function () {
 
     alert(
-        "FinGuard explains your financial situation in simple language without complicated financial terms."
+        "Here you can view recommendations to improve your financial health."
     );
 
 });

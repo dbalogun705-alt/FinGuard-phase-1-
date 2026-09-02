@@ -1,46 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FinGuard–Risk Explanation</title>
-  <link rel="icon" type="image/svg+xml" href="../Images/Logo.svg" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="../css folder/dashboard.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../css folder/risk explanation.css">
-</head>
-<body>
-  <div class="dashboard" id="dashboard">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="../Images/Logo.svg" alt="FinGuard logo" />
-        <span class="sidebar-brand">FinGuard</span>
-        <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" data-sidebar-toggle>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-        </button>
-      </div>
-      <ul class="sidebar-nav">
- <li><a class="sidebar-link" href="overview.html"><img src="../Images/home icon.svg" alt="" /><span>Overview</span></a></li>
-        <li><a class="sidebar-link" href="assessment-income.html"><img src="../Images/Video.svg" alt="" /><span>Assessment</span></a></li>
-        <li><a class="sidebar-link" href="Debt and DTI.html"><img src="../Images/computing.svg" alt="" /><span>Debt &amp; DTI</span></a></li>
-        <li><a class="sidebar-link" href="cashflow-buffer.html"><img src="../Images/status-up.svg" alt="" /><span>Cashflow Buffer</span></a></li>
-        <li><a class="sidebar-link" href="Shortfall.html"><img src="../Images/align-bottom.svg" alt="" /><span>Shortfall Forecast</span></a></li>
-        <li><a class="sidebar-link active" href="risk explanation.html"><img src="../Images/trend-down.svg" alt="" /><span>Risk Explanation</span></a></li>
-        <li><a class="sidebar-link" href="report.html"><img src="../Images/book-saved.svg" alt="" /><span>Reports</span></a></li>
-        <li><a class="sidebar-link" href="settings.html"><img src="../Images/bell2.svg" alt="" /><span>Notificications</span></a></li>
-        <li><a class="sidebar-link" href="profile .html"><img src="../Images/Icon.svg" alt="" /><span>Profile</span></a></li>
-        <li><a class="sidebar-link" href="settings.html"><img src="../Images/setting-2.svg" alt="" /><span>Settings</span></a></li>
-        <li><a class="sidebar-link" href="help.html"><img src="../Images/bx_support 1.svg" alt="" /><span>Help</span></a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <a class="sidebar-link" href="signin.html"><img src="../Images/Logout.svg" alt="" /><span>Log out</span></a>
-      </div>
-    </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../css folder/risk explanation.css" />
+    <title>FinGuard - Risk Explanation</title>
+  </head>
+  <body>
+    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame">
+    </iframe>
 
-    <main class="dashboard-main">
+    <main class="page-content">
         
     <main class="risk-page">
 
@@ -53,203 +27,159 @@
             <h1>Risk Explanation</h1>
 
             <div class="risk-profile">
-                <i class="dashboard-avatar"></i>
+                <i class="bi bi-person-fill"></i>
             </div>
 
-        </header>
+            <div class="risk-avatar">
+                👤
+            </div>
+        </div>
 
 
-        <!-- =========================
-             EXPLANATION SECTION
-        ========================== -->
+        <!-- Risk Level -->
+        <section class="risk-level-section">
 
-        <section class="risk-content">
+            <h3>Your Risk Level</h3>
 
+            <div class="risk-level-content">
 
-            <!-- BOX 1 -->
-
-            <div class="risk-item">
-
-                <button
-                    class="risk-question"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#riskAnswer1"
-                    aria-expanded="false"
-                >
-
-                    <span>
-                        Why FinGuard Identifies Financial<br>
-                        Pressure
-                    </span>
-
-                    <i class="bi bi-chevron-right"></i>
-
-                </button>
-
-
-                <div
-                    id="riskAnswer1"
-                    class="collapse risk-answer"
-                >
-
-                    <p>
-                        FinGuard identifies financial pressure
-                        by looking at your income, debt and
-                        available cash buffer.
-                    </p>
-
+                <!-- Risk Icon -->
+                <div class="risk-circle">
+                    <div class="risk-star">✦</div>
                 </div>
 
-            </div>
-
-
-            <!-- BOX 2 -->
-
-            <div class="risk-item">
-
-                <button
-                    class="risk-question"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#riskAnswer2"
-                    aria-expanded="false"
-                >
-
-                    <span>
-                        Major factors contributing to your<br>
-                        Risk
-                    </span>
-
-                    <i class="bi bi-chevron-right"></i>
-
-                </button>
-
-
-                <div
-                    id="riskAnswer2"
-                    class="collapse risk-answer"
-                >
+                <!-- Risk Text -->
+                <div class="risk-level-text">
+                    <h2>Moderate</h2>
 
                     <p>
-                        Your debt level, monthly expenses,
-                        income and cashflow can all contribute
-                        to your overall financial risk.
+                        Your monthly financial position is manageable
+                        <br>
+                        but there are areas that need attention
                     </p>
-
                 </div>
-
-            </div>
-
-
-            <!-- BOX 3 -->
-
-            <div class="risk-item">
-
-                <button
-                    class="risk-question"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#riskAnswer3"
-                    aria-expanded="false"
-                >
-
-                    <span>
-                        How debt and expenses affect<br>
-                        your position
-                    </span>
-
-                    <i class="bi bi-chevron-right"></i>
-
-                </button>
-
-
-                <div
-                    id="riskAnswer3"
-                    class="collapse risk-answer"
-                >
-
-                    <p>
-                        Higher debt and expenses can reduce
-                        the amount of money available for
-                        savings and unexpected expenses.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- BOX 4 -->
-
-            <div class="risk-item">
-
-                <button
-                    class="risk-question"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#riskAnswer4"
-                    aria-expanded="false"
-                >
-
-                    <span>
-                        What you can do to improve your<br>
-                        cash buffer
-                    </span>
-
-                    <i class="bi bi-chevron-right"></i>
-
-                </button>
-
-
-                <div
-                    id="riskAnswer4"
-                    class="collapse risk-answer"
-                >
-
-                    <p>
-                        You can improve your cash buffer by
-                        managing expenses, reducing unnecessary
-                        spending and setting aside money regularly.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================
-                 BOTTOM INFORMATION BOX
-            ========================== -->
-
-            <div class="risk-info">
-
-                <button
-                    class="risk-info-button"
-                    id="riskInfoButton"
-                >
-
-                    <span>
-                        We explain in plane Language - No jargon, no<br>
-                        judgement just clarity.
-                    </span>
-
-                    <i class="bi bi-chevron-right"></i>
-
-                </button>
 
             </div>
 
         </section>
 
-    </main>
 
-      <h1>Dashboard</h1>
-    </main>
+        <!-- Key Features -->
+        <section class="risk-features">
 
+            <h3>Key Features</h3>
+
+            <!-- Debt Level -->
+            <div class="risk-feature-row">
+
+                <div class="risk-feature-left">
+                    <div class="risk-feature-icon">♙</div>
+
+                    <div>
+                        <h4>Debt level</h4>
+                        <p>
+                            Your current debt obligations take up part of your monthly income
+                        </p>
+                    </div>
+                </div>
+
+                <span class="risk-status moderate">
+                    Moderate
+                </span>
+
+            </div>
+
+
+            <!-- Cashflow Buffer -->
+            <div class="risk-feature-row">
+
+                <div class="risk-feature-left">
+                    <div class="risk-feature-icon">♙</div>
+
+                    <div>
+                        <h4>Cashflow buffer</h4>
+                        <p>
+                            Your available buffer can cover approximately 3.2 months
+                        </p>
+                    </div>
+                </div>
+
+                <span class="risk-status moderate">
+                    Moderate
+                </span>
+
+            </div>
+
+
+            <!-- Monthly Expenses -->
+            <div class="risk-feature-row">
+
+                <div class="risk-feature-left">
+                    <div class="risk-feature-icon">♙</div>
+
+                    <div>
+                        <h4>Monthly expenses</h4>
+                        <p>
+                            Your regular expenses are reducing the amount available after income
+                        </p>
+                    </div>
+                </div>
+
+                <span class="risk-status high">
+                    High
+                </span>
+
+            </div>
+
+
+            <!-- Income Stability -->
+            <div class="risk-feature-row">
+
+                <div class="risk-feature-left">
+                    <div class="risk-feature-icon">♙</div>
+
+                    <div>
+                        <h4>Income stability</h4>
+                        <p>
+                            Your monthly income provides a more reasonable foundation for your
+                            financial position
+                        </p>
+                    </div>
+                </div>
+
+                <span class="risk-status good">
+                    Good
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Why FinGuard -->
+        <section class="risk-pressure">
+
+            <h3>Why FinGuard Identifies Financial Pressure</h3>
+
+            <p>Reduce unnecessary expenses.</p>
+            <p>Keep your payments manageable.</p>
+            <p>Build your emergency savings.</p>
+            <p>Monitor your upcoming obligations.</p>
+
+        </section>
+
+
+        <!-- Recommendation Button -->
+        <div class="risk-button-container">
+
+            <button id="recommendationBtn" class="risk-recommendation-btn">
+                See all recommendations
+            </button>
+        </div>
+    </main>
+     </main>
+      <!-- JavaScript -->
     <script src="risk explanation.js"></script>
-    <script src="../javascript/api.js"></script>
-  <script src="../javascript/dashboard.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
