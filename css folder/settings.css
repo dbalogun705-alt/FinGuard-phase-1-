@@ -1,0 +1,368 @@
+/* =========================================
+   FINGUARD SETTINGS PAGE
+   ========================================= */
+
+/* Main settings area */
+.settings-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 35px 45px;
+    font-family: "Inter", sans-serif;
+    color: #222;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.settings-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 3px;
+}
+
+.settings-header p {
+    font-size: 10px;
+    color: #999;
+    margin: 0;
+}
+
+.settings-bell {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================
+   SETTINGS LIST
+   ========================================= */
+
+.settings-list {
+    margin-bottom: 25px;
+}
+
+.setting-row {
+    width: 100%;
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #eeeeee;
+
+    padding: 7px 12px;
+
+    text-align: left;
+    font-family: "Inter", sans-serif;
+
+    cursor: pointer;
+}
+
+.setting-row:hover {
+    background-color: #fafafa;
+}
+
+
+/* =========================================
+   SETTING ICON
+   ========================================= */
+
+.setting-icon {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 8px;
+
+    border-radius: 5px;
+
+    background-color: #f1f1f1;
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SETTING TEXT
+   ========================================= */
+
+.setting-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.setting-copy strong {
+    font-size: 11px;
+    font-weight: 600;
+    color: #222;
+}
+
+.setting-copy small {
+    font-size: 7px;
+    color: #777;
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   ARROWS
+   ========================================= */
+
+.setting-arrow {
+    font-size: 18px;
+    font-weight: 300;
+    color: #555;
+    margin-left: 10px;
+}
+
+.setting-end {
+    display: flex;
+    align-items: center;
+    font-size: 8px;
+    color: #777;
+}
+
+
+/* =========================================
+   TOGGLE ROW
+   ========================================= */
+
+.setting-control {
+    cursor: default;
+}
+
+.setting-control:hover {
+    background-color: #fff;
+}
+
+
+/* =========================================
+   SWITCH
+   ========================================= */
+
+.switch {
+    position: relative;
+
+    width: 30px;
+    height: 17px;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* Slider */
+
+.slider {
+    position: absolute;
+
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #d1d1d1;
+
+    border-radius: 20px;
+
+    transition: 0.3s;
+}
+
+
+/* Circle inside switch */
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+    height: 13px;
+
+    left: 2px;
+    top: 2px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+
+/* Checked switch */
+
+.switch input:checked + .slider {
+    background-color: #1677ed;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(13px);
+}
+
+
+/* =========================================
+   SECOND TOGGLE LIST
+   ========================================= */
+
+.toggle-list {
+    margin-top: 5px;
+}
+
+.toggle-list .setting-row {
+    min-height: 43px;
+}
+
+
+/* =========================================
+   TIP BOX
+   ========================================= */
+
+.settings-tip {
+    display: flex;
+    align-items: center;
+
+    background-color: #fff0e2;
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    margin-top: 30px;
+}
+
+.tip-icon {
+    width: 25px;
+    font-size: 17px;
+    color: #ff8a25;
+}
+
+.settings-tip div {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-tip strong {
+    font-size: 10px;
+    color: #ff8a25;
+    margin-bottom: 2px;
+}
+
+.settings-tip small {
+    font-size: 7px;
+    color: #777;
+}
+
+
+/* =========================================
+   DARK MODE
+   Works with your existing settings.js
+   ========================================= */
+
+body.dark-mode {
+    background-color: #181818;
+    color: #ffffff;
+}
+
+body.dark-mode .settings-page {
+    background-color: #181818;
+    color: #ffffff;
+}
+
+body.dark-mode .setting-row {
+    background-color: #181818;
+    border-color: #333;
+}
+
+body.dark-mode .setting-row:hover {
+    background-color: #222;
+}
+
+body.dark-mode .setting-copy strong {
+    color: #ffffff;
+}
+
+body.dark-mode .setting-copy small {
+    color: #aaaaaa;
+}
+
+body.dark-mode .settings-header p {
+    color: #aaaaaa;
+}
+
+body.dark-mode .setting-icon {
+    background-color: #292929;
+    color: #dddddd;
+}
+
+body.dark-mode .setting-arrow {
+    color: #dddddd;
+}
+
+body.dark-mode .setting-end {
+    color: #aaaaaa;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .settings-page {
+        padding: 25px 20px;
+    }
+
+    .settings-header h1 {
+        font-size: 18px;
+    }
+
+    .setting-row {
+        padding: 8px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .settings-page {
+        padding: 20px 12px;
+    }
+
+    .setting-copy strong {
+        font-size: 10px;
+    }
+
+    .setting-copy small {
+        font-size: 7px;
+    }
+
+    .settings-tip {
+        margin-top: 20px;
+    }
+}

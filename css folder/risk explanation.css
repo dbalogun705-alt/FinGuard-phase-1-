@@ -241,6 +241,7 @@ body {
 }
 
 .risk-recommendation-btn {
+  display: inline-block;
   width: 310px;
   border: none;
   border-radius: 5px;
@@ -254,6 +255,7 @@ body {
   font-weight: bold;
 
   cursor: pointer;
+  text-align: center;
 }
 
 .risk-recommendation-btn:hover {
