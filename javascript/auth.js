@@ -83,16 +83,27 @@
       FG.api
         .register(data)
         .then(function () {
-          // Backend has no verification step yet – verify.html is a UI-only
-          // screen. Carry the email through so the next screens can use it.
+          return FG.api.sendOtp({ email: data.email });
+        })
+        .then(function (otpResponse) {
           try {
             sessionStorage.setItem("fg_signup_email", data.email);
+            sessionStorage.setItem(
+              "fg_otp_response",
+              JSON.stringify(otpResponse),
+            );
           } catch (err) {}
           window.location.href = "verify.html";
         })
         .catch(function (err) {
           setBusy(signupForm, false);
-          showAlert(err.message);
+          if (err.status === 409) {
+            showAlert(
+              "This email already has an account. Please sign in instead.",
+            );
+          } else {
+            showAlert(err.message);
+          }
         });
     });
   }
@@ -137,7 +148,27 @@
         })
         .catch(function (err) {
           setBusy(signinForm, false);
-          showAlert(err.message);
+          if (err.status === 403) {
+            setBusy(signinForm, true);
+            FG.api
+              .sendOtp({ email: data.email })
+              .then(function (otpResponse) {
+                try {
+                  sessionStorage.setItem("fg_signup_email", data.email);
+                  sessionStorage.setItem(
+                    "fg_otp_response",
+                    JSON.stringify(otpResponse),
+                  );
+                } catch (storageError) {}
+                window.location.href = "verify.html";
+              })
+              .catch(function (otpError) {
+                setBusy(signinForm, false);
+                showAlert(otpError.message);
+              });
+          } else {
+            showAlert(err.message);
+          }
         });
     });
   }

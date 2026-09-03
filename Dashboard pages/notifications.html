@@ -5,425 +5,389 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap -->
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Bootstrap Icons -->
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../css folder/dashboard.css" />
     <link rel="stylesheet" href="../css folder/notifications.css" />
     <title>FinGuard - Notifications</title>
   </head>
   <body>
-    <iframe src="sidebar.html" title="FinGuard sidebar" class="sidebar-frame">
-    </iframe>
+    <div class="dashboard" id="dashboard">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="../Images/Logo.svg" alt="FinGuard logo" />
+          <span class="sidebar-brand">FinGuard</span>
+          <button
+            class="sidebar-toggle"
+            type="button"
+            aria-label="Toggle sidebar"
+            data-sidebar-toggle
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        <ul class="sidebar-nav">
+          <li>
+            <a class="sidebar-link" href="overview.html"
+              ><img src="../Images/home icon.svg" alt="" /><span
+                >Overview</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="assessment-income.html"
+              ><img src="../Images/Video.svg" alt="" /><span
+                >Assessment</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="Debt and DTI.html"
+              ><img src="../Images/computing.svg" alt="" /><span
+                >Debt &amp; DTI</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="cashflow-buffer.html"
+              ><img src="../Images/status-up.svg" alt="" /><span
+                >Cashflow Buffer</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="Shortfall.html"
+              ><img src="../Images/align-bottom.svg" alt="" /><span
+                >Shortfall Forecast</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="risk explanation.html"
+              ><img src="../Images/trend-down.svg" alt="" /><span
+                >Risk Explanation</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="report.html"
+              ><img src="../Images/book-saved.svg" alt="" /><span
+                >Reports</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link active" href="notifications.html"
+              ><img src="../Images/bell2.svg" alt="" /><span
+                >Notifications</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="profile .html"
+              ><img src="../Images/Icon.svg" alt="" /><span>Profile</span></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="settings.html"
+              ><img src="../Images/setting-2.svg" alt="" /><span
+                >Settings</span
+              ></a
+            >
+          </li>
+          <li>
+            <a class="sidebar-link" href="help.html"
+              ><img src="../Images/bx_support 1.svg" alt="" /><span
+                >Help</span
+              ></a
+            >
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <a class="sidebar-link" href="signin.html"
+            ><img src="../Images/Logout.svg" alt="" /><span>Log out</span></a
+          >
+        </div>
+      </aside>
 
-    <main class="page-content">
-         <main class="notify-page">
-
+      <main class="page-content notify-page">
         <!-- =========================
              TOP BAR
         ========================== -->
 
         <div class="notify-topbar">
+          <div class="notify-menu">
+            <i class="bi bi-list"></i>
+          </div>
 
-            <div class="notify-menu">
-                <i class="bi bi-list"></i>
-            </div>
-
-            <div class="notify-bell">
-                <i class="bi bi-bell"></i>
-            </div>
-
+          <div class="notify-bell">
+            <i class="bi bi-bell"></i>
+          </div>
         </div>
-
 
         <!-- =========================
              PAGE TITLE
         ========================== -->
 
         <section class="notify-heading">
+          <h1>Notifications</h1>
 
-            <h1>Notifications</h1>
-
-            <p>
-                Your recent activity and payment summary
-            </p>
-
+          <p>Your recent activity and payment summary</p>
         </section>
-
 
         <!-- =========================
              FILTER TABS
         ========================== -->
 
         <div class="notify-tabs">
+          <button class="notify-tab active" data-filter="all">All</button>
 
-            <button
-                class="notify-tab active"
-                data-filter="all">
-                All
-            </button>
+          <button class="notify-tab" data-filter="payment">Payment</button>
 
-            <button
-                class="notify-tab"
-                data-filter="payment">
-                Payment
-            </button>
+          <button class="notify-tab" data-filter="debt">Debts</button>
 
-            <button
-                class="notify-tab"
-                data-filter="debt">
-                Debts
-            </button>
+          <button class="notify-tab" data-filter="alert">Alerts</button>
 
-            <button
-                class="notify-tab"
-                data-filter="alert">
-                Alerts
-            </button>
+          <button class="notify-tab" data-filter="system">System</button>
 
-            <button
-                class="notify-tab"
-                data-filter="system">
-                System
-            </button>
-
-            <button
-                class="notify-filter"
-                id="notifyFilterBtn">
-
-                <i class="bi bi-filter"></i>
-                Filter
-
-            </button>
-
+          <button class="notify-filter" id="notifyFilterBtn">
+            <i class="bi bi-filter"></i>
+            Filter
+          </button>
         </div>
-
 
         <!-- =========================
              NOTIFICATIONS
         ========================== -->
 
         <section class="notify-list">
+          <!-- TODAY -->
 
+          <div class="notify-date">Today - 30 Aug 2026</div>
 
-            <!-- TODAY -->
+          <!-- Money Received -->
 
-            <div class="notify-date">
-                Today - 30 Aug 2026
+          <div class="notify-item" data-type="payment">
+            <div class="notify-icon notify-green">
+              <i class="bi bi-arrow-down"></i>
             </div>
 
+            <div class="notify-details">
+              <h3>Money Received</h3>
 
-            <!-- Money Received -->
-
-            <div class="notify-item" data-type="payment">
-
-                <div class="notify-icon notify-green">
-
-                    <i class="bi bi-arrow-down"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Money Received</h3>
-
-                    <p>Salary from GT Bank</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <strong class="notify-green-text">
-                        +₦450,000.00
-                    </strong>
-
-                    <small>9:42am</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <p>Salary from GT Bank</p>
             </div>
 
+            <div class="notify-right">
+              <strong class="notify-green-text"> +₦450,000.00 </strong>
 
-            <!-- Paid Debt -->
-
-            <div class="notify-item" data-type="debt">
-
-                <div class="notify-icon notify-green">
-
-                    <i class="bi bi-credit-card"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Paid Debt</h3>
-
-                    <p>Payment to Carbon (Personal loan)</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <strong>
-                        -₦85,000.00
-                    </strong>
-
-                    <small>10:15am</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <small>9:42am</small>
             </div>
 
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
 
-            <!-- YESTERDAY -->
+          <!-- Paid Debt -->
 
-            <div class="notify-date">
-                Yesterday - 29 Aug 2026
+          <div class="notify-item" data-type="debt">
+            <div class="notify-icon notify-green">
+              <i class="bi bi-credit-card"></i>
             </div>
 
+            <div class="notify-details">
+              <h3>Paid Debt</h3>
 
-            <!-- Money Received -->
-
-            <div class="notify-item" data-type="payment">
-
-                <div class="notify-icon notify-green">
-
-                    <i class="bi bi-arrow-down"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Money Received</h3>
-
-                    <p>Transfer from Chinedu</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <strong class="notify-green-text">
-                        +₦20,000.00
-                    </strong>
-
-                    <small>6:30pm</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <p>Payment to Carbon (Personal loan)</p>
             </div>
 
+            <div class="notify-right">
+              <strong> -₦85,000.00 </strong>
 
-            <!-- Bill Payment -->
-
-            <div class="notify-item" data-type="payment">
-
-                <div class="notify-icon notify-red">
-
-                    <i class="bi bi-arrow-up-right"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Bill Payment</h3>
-
-                    <p>Paid PHED Electricity Bill</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <strong>
-                        -₦12,450.00
-                    </strong>
-
-                    <small>4:25pm</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <small>10:15am</small>
             </div>
 
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
 
-            <!-- 28 AUGUST -->
+          <!-- YESTERDAY -->
 
-            <div class="notify-date">
-                28 Aug 2026
+          <div class="notify-date">Yesterday - 29 Aug 2026</div>
+
+          <!-- Money Received -->
+
+          <div class="notify-item" data-type="payment">
+            <div class="notify-icon notify-green">
+              <i class="bi bi-arrow-down"></i>
             </div>
 
+            <div class="notify-details">
+              <h3>Money Received</h3>
 
-            <!-- Paid Debt -->
-
-            <div class="notify-item" data-type="debt">
-
-                <div class="notify-icon notify-red">
-
-                    <i class="bi bi-arrow-up-right"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Paid Debt</h3>
-
-                    <p>Payment to fair money</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <strong>
-                        -₦45,000.00
-                    </strong>
-
-                    <small>8:15am</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <p>Transfer from Chinedu</p>
             </div>
 
+            <div class="notify-right">
+              <strong class="notify-green-text"> +₦20,000.00 </strong>
 
-            <!-- 27 AUGUST -->
-
-            <div class="notify-date">
-                27 Aug 2026
+              <small>6:30pm</small>
             </div>
 
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
 
-            <!-- Cashflow Alert -->
+          <!-- Bill Payment -->
 
-            <div class="notify-item" data-type="alert">
-
-                <div class="notify-icon notify-orange">
-
-                    <i class="bi bi-lightbulb"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Cashflow Alert</h3>
-
-                    <p>Low Cashflow expected in 3 days</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <small>9:00am</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+          <div class="notify-item" data-type="payment">
+            <div class="notify-icon notify-red">
+              <i class="bi bi-arrow-up-right"></i>
             </div>
 
+            <div class="notify-details">
+              <h3>Bill Payment</h3>
 
-            <!-- 26 AUGUST -->
-
-            <div class="notify-date">
-                26 Aug 2026
+              <p>Paid PHED Electricity Bill</p>
             </div>
 
+            <div class="notify-right">
+              <strong> -₦12,450.00 </strong>
 
-            <!-- System Update -->
-
-            <div class="notify-item" data-type="system">
-
-                <div class="notify-icon notify-blue">
-
-                    <i class="bi bi-clock"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>System Update</h3>
-
-                    <p>Your forecast has been updated</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <small>7:15am</small>
-
-                </div>
-
-                <i class="bi bi-chevron-right notify-arrow"></i>
-
+              <small>4:25pm</small>
             </div>
 
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
+
+          <!-- 28 AUGUST -->
+
+          <div class="notify-date">28 Aug 2026</div>
+
+          <!-- Paid Debt -->
+
+          <div class="notify-item" data-type="debt">
+            <div class="notify-icon notify-red">
+              <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+            <div class="notify-details">
+              <h3>Paid Debt</h3>
+
+              <p>Payment to fair money</p>
+            </div>
+
+            <div class="notify-right">
+              <strong> -₦45,000.00 </strong>
+
+              <small>8:15am</small>
+            </div>
+
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
+
+          <!-- 27 AUGUST -->
+
+          <div class="notify-date">27 Aug 2026</div>
+
+          <!-- Cashflow Alert -->
+
+          <div class="notify-item" data-type="alert">
+            <div class="notify-icon notify-orange">
+              <i class="bi bi-lightbulb"></i>
+            </div>
+
+            <div class="notify-details">
+              <h3>Cashflow Alert</h3>
+
+              <p>Low Cashflow expected in 3 days</p>
+            </div>
+
+            <div class="notify-right">
+              <small>9:00am</small>
+            </div>
+
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
+
+          <!-- 26 AUGUST -->
+
+          <div class="notify-date">26 Aug 2026</div>
+
+          <!-- System Update -->
+
+          <div class="notify-item" data-type="system">
+            <div class="notify-icon notify-blue">
+              <i class="bi bi-clock"></i>
+            </div>
+
+            <div class="notify-details">
+              <h3>System Update</h3>
+
+              <p>Your forecast has been updated</p>
+            </div>
+
+            <div class="notify-right">
+              <small>7:15am</small>
+            </div>
+
+            <i class="bi bi-chevron-right notify-arrow"></i>
+          </div>
         </section>
-
 
         <!-- =========================
              VIEW OLDER
         ========================== -->
 
         <div class="notify-older">
+          <button id="notifyOlderBtn">
+            View older notifications
 
-            <button id="notifyOlderBtn">
-
-                View older notifications
-
-                <i class="bi bi-chevron-down"></i>
-
-            </button>
-
+            <i class="bi bi-chevron-down"></i>
+          </button>
         </div>
-
 
         <!-- Hidden older notification -->
 
-        <div
-            id="notifyOlderContent"
-            class="notify-older-content">
-
-            <div class="notify-item" data-type="system">
-
-                <div class="notify-icon notify-blue">
-
-                    <i class="bi bi-gear"></i>
-
-                </div>
-
-                <div class="notify-details">
-
-                    <h3>Account Update</h3>
-
-                    <p>Your account information was updated</p>
-
-                </div>
-
-                <div class="notify-right">
-
-                    <small>5:30pm</small>
-
-                </div>
-
+        <div id="notifyOlderContent" class="notify-older-content">
+          <div class="notify-item" data-type="system">
+            <div class="notify-icon notify-blue">
+              <i class="bi bi-gear"></i>
             </div>
 
+            <div class="notify-details">
+              <h3>Account Update</h3>
+
+              <p>Your account information was updated</p>
+            </div>
+
+            <div class="notify-right">
+              <small>5:30pm</small>
+            </div>
+          </div>
         </div>
-    </main>
-    </main>
-    <script src="notifications.js"></script>
+      </main>
+    </div>
+    <script src="../javascript/api.js"></script>
+    <script src="../javascript/dashboard.js"></script>
+    <script src="../javascript/notifications.js"></script>
     <!-- Bootstrap JS -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

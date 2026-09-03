@@ -10,6 +10,7 @@
    COMPLETE ENDPOINTS LIST:
      POST   /users/register            { firstName, lastName, email, password }
      POST   /users/login               { email, password } -> { token, user }
+    POST   /auth/send-otp             { email }
      GET    /debts
      POST   /debts                     { lenderName, debtType,
                                          outstandingBalance, monthlyRepayment }
@@ -191,6 +192,24 @@
           email: data.email,
           password: data.password,
         },
+      });
+    },
+    sendOtp: function (data) {
+      return request("/auth/send-otp", {
+        method: "POST",
+        auth: false,
+        body: { email: data.email },
+      }).then(unwrap);
+    },
+    verifyOtp: function (data) {
+      return request("/auth/verify-otp", {
+        method: "POST",
+        auth: false,
+        body: { email: data.email, otp: data.otp },
+      }).then(function (payload) {
+        var result = unwrap(payload);
+        if (result && result.token) setSession(result);
+        return result;
       });
     },
     login: function (data) {
