@@ -56,3 +56,33 @@ actions.forEach(function (action) {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", async function () {
+  // Guard route
+  if (!FinGuard.requireAuth("signin.html")) return;
+
+  try {
+    // Fetch profile and latest analysis simultaneously
+    const profile = await FinGuard.api.getFinancialProfile();
+    const analyses = await FinGuard.api.getAnalyses();
+    const latest = Array.isArray(analyses) ? analyses[0] : analyses;
+
+    // Render profile numbers
+    if (profile) {
+      document.getElementById("incomeValue").textContent =
+        `₦${(profile.monthlyIncome || 0).toLocaleString()}`;
+      document.getElementById("obligationsValue").textContent =
+        `₦${(profile.recurringExpenses || 0).toLocaleString()}`;
+    }
+
+    // Render score and indicators
+    if (latest) {
+      document.getElementById("healthScoreGauge").textContent =
+        `${latest.score || 0}%`;
+      document.getElementById("dtiRatioValue").textContent =
+        latest.dtiRatio || "N/A";
+    }
+  } catch (err) {
+    console.error("Dashboard error:", err.message);
+  }
+});

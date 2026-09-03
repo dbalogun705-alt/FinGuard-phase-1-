@@ -7,7 +7,7 @@
    Auth     : JWT bearer token from POST /users/login
    ==========================================================================
 
-   Endpoints currently wired:
+   COMPLETE ENDPOINTS LIST:
      POST   /users/register            { firstName, lastName, email, password }
      POST   /users/login               { email, password } -> { token, user }
      GET    /debts
@@ -19,11 +19,6 @@
                                          additionalIncome, accountBalance,
                                          currency }
      GET    /financial-profile/:id
-
-   NOT wired yet (waiting on the backend team):
-     - email / phone verification (no OTP endpoint exists)
-     - a cashflow-buffer endpoint / official buffer formula
-     - a "get my financial profile" route that doesn't need an id
    ========================================================================== */
 
 (function (global) {
@@ -115,12 +110,14 @@
     } else if (typeof payload === "string") {
       var s = payload.trim();
       // Ignore Express' default HTML error pages – never show raw markup.
-      var isHtml = /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
+      var isHtml =
+        /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
       if (s && !isHtml && s.length < 200) return s;
     }
 
     if (status === 0) return "Cannot reach the server. Check your connection.";
-    if (status === 401) return "Your session has expired. Please sign in again.";
+    if (status === 401)
+      return "Your session has expired. Please sign in again.";
     if (status === 404)
       return "That feature isn't available on the server yet.";
     if (status >= 500)
@@ -135,7 +132,8 @@
     var url = BASE_URL + path;
     var headers = { Accept: "application/json" };
 
-    if (options.body !== undefined) headers["Content-Type"] = "application/json";
+    if (options.body !== undefined)
+      headers["Content-Type"] = "application/json";
 
     if (options.auth !== false) {
       var token = getToken();
@@ -145,12 +143,14 @@
     return fetch(url, {
       method: options.method || "GET",
       headers: headers,
-      body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+      body:
+        options.body !== undefined ? JSON.stringify(options.body) : undefined,
     })
       .then(function (res) {
-        var isJson = (res.headers.get("content-type") || "").indexOf(
-          "application/json"
-        ) !== -1;
+        var isJson =
+          (res.headers.get("content-type") || "").indexOf(
+            "application/json",
+          ) !== -1;
         return (isJson ? res.json() : res.text())
           .catch(function () {
             return null;
@@ -161,7 +161,7 @@
               throw new ApiError(
                 messageFrom(payload, res.status),
                 res.status,
-                payload
+                payload,
               );
             }
             return payload;
@@ -212,7 +212,9 @@
       return request("/debts", { method: "POST", body: debt }).then(unwrap);
     },
     updateDebt: function (id, debt) {
-      return request("/debts/" + id, { method: "PUT", body: debt }).then(unwrap);
+      return request("/debts/" + id, { method: "PUT", body: debt }).then(
+        unwrap,
+      );
     },
     deleteDebt: function (id) {
       return request("/debts/" + id, { method: "DELETE" });
@@ -230,7 +232,53 @@
       });
     },
     getFinancialProfile: function (id) {
-      return request("/financial-profile/" + (id || getProfileId())).then(unwrap);
+      return request("/financial-profile/" + (id || getProfileId())).then(
+        unwrap,
+      );
+    },
+    updateFinancialProfile: function (id, profile) {
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "PUT",
+        body: profile,
+      }).then(unwrap);
+    },
+    deleteFinancialProfile: function (id) {
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "DELETE",
+      }).then(unwrap);
+    },
+
+    // analyses - calculate financial metrics based on profile
+    calculateDebtToIncomeRatio: function (profileId) {
+      return request(
+        "/analyses/debt-to-income-ratio/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+    calculateCashflowBuffer: function (profileId) {
+      return request(
+        "/analyses/cashflow-buffer/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+    analyzeRiskLevel: function (profileId) {
+      return request(
+        "/analyses/risk-level/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+    getFinancialHealthScore: function (profileId) {
+      return request(
+        "/analyses/health-score/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+    getShortfallForecast: function (profileId, months) {
+      var path =
+        "/analyses/shortfall-forecast/" + (profileId || getProfileId());
+      if (months) path += "?months=" + months;
+      return request(path).then(unwrap);
+    },
+    getRecommendations: function (profileId) {
+      return request(
+        "/analyses/recommendations/" + (profileId || getProfileId()),
+      ).then(unwrap);
     },
   };
 

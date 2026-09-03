@@ -1,33 +1,3 @@
-html,
-body {
-  margin: 0;
-  overflow-x: hidden;
-}
-
-.sidebar-frame {
-  width: 248px;
-  height: 100vh;
-  border: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
-.page-content {
-  margin-left: 248px;
-  transition: margin-left 0.25s ease-in-out;
-}
-
-.overview-page {
-  min-height: 100vh;
-  width: calc(100% - 248px);
-  padding: 24px 32px;
-  background: #ffffff;
-}
-
-.sidebar-collapsed .page-content {
-  margin-left: 72px;
-}
 body {
   font-family: Arial, sans-serif;
   background: #ffffff;

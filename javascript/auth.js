@@ -39,7 +39,7 @@
   // Password show / hide
   document.querySelectorAll("[data-toggle-password]").forEach(function (icon) {
     icon.addEventListener("click", function () {
-      var input = icon.parentElement.querySelector('input');
+      var input = icon.parentElement.querySelector("input");
       if (!input) return;
       var toText = input.type === "password";
       input.type = toText ? "text" : "password";
