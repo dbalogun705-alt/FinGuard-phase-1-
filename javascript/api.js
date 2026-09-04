@@ -5,21 +5,6 @@
 
    Base URL : https://finguard-api-n71k.onrender.com/api
    Auth     : JWT bearer token from POST /users/login
-   ==========================================================================
-
-   COMPLETE ENDPOINTS LIST:
-     POST   /users/register            { firstName, lastName, email, password }
-     POST   /users/login               { email, password } -> { token, user }
-    POST   /auth/send-otp             { email }
-     GET    /debts
-     POST   /debts                     { lenderName, debtType,
-                                         outstandingBalance, monthlyRepayment }
-     PUT    /debts/:id
-     DELETE /debts/:id
-     POST   /financial-profile         { monthlyIncome, recurringExpenses,
-                                         additionalIncome, accountBalance,
-                                         currency }
-     GET    /financial-profile/:id
    ========================================================================== */
 
 (function (global) {
@@ -61,9 +46,16 @@
 
   function setSession(data) {
     try {
-      if (data && data.token) localStorage.setItem(STORAGE.token, data.token);
-      if (data && data.user)
-        localStorage.setItem(STORAGE.user, JSON.stringify(data.user));
+      if (data && data.token) {
+        localStorage.setItem(STORAGE.token, data.token);
+      }
+
+      if (data && data.user) {
+        localStorage.setItem(
+          STORAGE.user,
+          JSON.stringify(data.user)
+        );
+      }
     } catch (e) {
       /* storage unavailable – nothing we can do */
     }
@@ -71,7 +63,9 @@
 
   function setProfileId(id) {
     try {
-      if (id) localStorage.setItem(STORAGE.profileId, id);
+      if (id) {
+        localStorage.setItem(STORAGE.profileId, id);
+      }
     } catch (e) {}
   }
 
@@ -91,38 +85,55 @@
 
   function ApiError(message, status, payload) {
     this.name = "ApiError";
-    this.message = message || "Something went wrong. Please try again.";
+    this.message =
+      message ||
+      "Something went wrong. Please try again.";
     this.status = status || 0;
     this.payload = payload || null;
   }
+
   ApiError.prototype = Object.create(Error.prototype);
 
   function messageFrom(payload, status) {
     if (payload && typeof payload === "object") {
-      // backend uses a few different shapes
       var m =
         payload.message ||
         payload.error ||
         (Array.isArray(payload.errors) &&
           payload.errors[0] &&
-          (payload.errors[0].msg || payload.errors[0].message)) ||
+          (payload.errors[0].msg ||
+            payload.errors[0].message)) ||
         null;
+
       if (m) return m;
     } else if (typeof payload === "string") {
       var s = payload.trim();
-      // Ignore Express' default HTML error pages – never show raw markup.
+
       var isHtml =
-        /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
-      if (s && !isHtml && s.length < 200) return s;
+        /^<(!doctype|html|pre)/i.test(s) ||
+        s.indexOf("<pre>") !== -1;
+
+      if (s && !isHtml && s.length < 200) {
+        return s;
+      }
     }
 
-    if (status === 0) return "Cannot reach the server. Check your connection.";
-    if (status === 401)
+    if (status === 0) {
+      return "Cannot reach the server. Check your connection.";
+    }
+
+    if (status === 401) {
       return "Your session has expired. Please sign in again.";
-    if (status === 404)
+    }
+
+    if (status === 404) {
       return "That feature isn't available on the server yet.";
-    if (status >= 500)
+    }
+
+    if (status >= 500) {
       return "The server had a problem with that request. Please try again later.";
+    }
+
     return "Request failed (" + status + ").";
   }
 
@@ -130,48 +141,69 @@
 
   function request(path, options) {
     options = options || {};
-    var url = BASE_URL + path;
-    var headers = { Accept: "application/json" };
 
-    if (options.body !== undefined)
+    var url = BASE_URL + path;
+
+    var headers = {
+      Accept: "application/json",
+    };
+
+    if (options.body !== undefined) {
       headers["Content-Type"] = "application/json";
+    }
 
     if (options.auth !== false) {
       var token = getToken();
-      if (token) headers.Authorization = "Bearer " + token;
+
+      if (token) {
+        headers.Authorization = "Bearer " + token;
+      }
     }
 
     return fetch(url, {
       method: options.method || "GET",
       headers: headers,
       body:
-        options.body !== undefined ? JSON.stringify(options.body) : undefined,
+        options.body !== undefined
+          ? JSON.stringify(options.body)
+          : undefined,
     })
       .then(function (res) {
         var isJson =
           (res.headers.get("content-type") || "").indexOf(
-            "application/json",
+            "application/json"
           ) !== -1;
+
         return (isJson ? res.json() : res.text())
           .catch(function () {
             return null;
           })
           .then(function (payload) {
             if (!res.ok) {
-              if (res.status === 401) clearSession();
+              if (res.status === 401) {
+                clearSession();
+              }
+
               throw new ApiError(
                 messageFrom(payload, res.status),
                 res.status,
-                payload,
+                payload
               );
             }
+
             return payload;
           });
       })
       .catch(function (err) {
-        if (err instanceof ApiError) throw err;
-        // network / CORS / DNS failure
-        throw new ApiError(messageFrom(null, 0), 0, null);
+        if (err instanceof ApiError) {
+          throw err;
+        }
+
+        throw new ApiError(
+          messageFrom(null, 0),
+          0,
+          null
+        );
       });
   }
 
@@ -194,29 +226,44 @@
         },
       });
     },
+
     sendOtp: function (data) {
       return request("/auth/send-otp", {
         method: "POST",
         auth: false,
-        body: { email: data.email },
+        body: {
+          email: data.email,
+        },
       }).then(unwrap);
     },
+
     verifyOtp: function (data) {
       return request("/auth/verify-otp", {
         method: "POST",
         auth: false,
-        body: { email: data.email, otp: data.otp },
+        body: {
+          email: data.email,
+          otp: data.otp,
+        },
       }).then(function (payload) {
         var result = unwrap(payload);
-        if (result && result.token) setSession(result);
+
+        if (result && result.token) {
+          setSession(result);
+        }
+
         return result;
       });
     },
+
     login: function (data) {
       return request("/users/login", {
         method: "POST",
         auth: false,
-        body: { email: data.email, password: data.password },
+        body: {
+          email: data.email,
+          password: data.password,
+        },
       }).then(function (payload) {
         setSession(payload);
         return payload;
@@ -227,16 +274,25 @@
     getDebts: function () {
       return request("/debts").then(unwrap);
     },
+
     createDebt: function (debt) {
-      return request("/debts", { method: "POST", body: debt }).then(unwrap);
+      return request("/debts", {
+        method: "POST",
+        body: debt,
+      }).then(unwrap);
     },
+
     updateDebt: function (id, debt) {
-      return request("/debts/" + id, { method: "PUT", body: debt }).then(
-        unwrap,
-      );
+      return request("/debts/" + id, {
+        method: "PUT",
+        body: debt,
+      }).then(unwrap);
     },
+
     deleteDebt: function (id) {
-      return request("/debts/" + id, { method: "DELETE" });
+      return request("/debts/" + id, {
+        method: "DELETE",
+      });
     },
 
     // financial profile
@@ -246,67 +302,126 @@
         body: profile,
       }).then(function (payload) {
         var data = unwrap(payload);
-        if (data && data._id) setProfileId(data._id);
+
+        if (data && data._id) {
+          setProfileId(data._id);
+        }
+
         return data;
       });
     },
-    getFinancialProfile: function (id) {
-      return request("/financial-profile/" + (id || getProfileId())).then(
-        unwrap,
-      );
-    },
-    updateFinancialProfile: function (id, profile) {
-      return request("/financial-profile/" + (id || getProfileId()), {
-        method: "PUT",
+
+    /*
+     * ADDED FOR ASSESSMENT EXPENSES
+     *
+     * The Postman documentation shows:
+     * POST /api/financial-profiles
+     *
+     * This is kept separate from the original teammate function above.
+     */
+    createAssessmentFinancialProfile: function (profile) {
+      return request("/financial-profiles", {
+        method: "POST",
         body: profile,
-      }).then(unwrap);
-    },
-    deleteFinancialProfile: function (id) {
-      return request("/financial-profile/" + (id || getProfileId()), {
-        method: "DELETE",
-      }).then(unwrap);
+      }).then(function (payload) {
+        var data = unwrap(payload);
+
+        if (data && data._id) {
+          setProfileId(data._id);
+        }
+
+        return data;
+      });
     },
 
-    // analyses - calculate financial metrics based on profile
+    getFinancialProfile: function (id) {
+      return request(
+        "/financial-profile/" +
+          (id || getProfileId())
+      ).then(unwrap);
+    },
+
+    updateFinancialProfile: function (id, profile) {
+      return request(
+        "/financial-profile/" +
+          (id || getProfileId()),
+        {
+          method: "PUT",
+          body: profile,
+        }
+      ).then(unwrap);
+    },
+
+    deleteFinancialProfile: function (id) {
+      return request(
+        "/financial-profile/" +
+          (id || getProfileId()),
+        {
+          method: "DELETE",
+        }
+      ).then(unwrap);
+    },
+
+    // analyses
     calculateDebtToIncomeRatio: function (profileId) {
       return request(
-        "/analyses/debt-to-income-ratio/" + (profileId || getProfileId()),
+        "/analyses/debt-to-income-ratio/" +
+          (profileId || getProfileId())
       ).then(unwrap);
     },
+
     calculateCashflowBuffer: function (profileId) {
       return request(
-        "/analyses/cashflow-buffer/" + (profileId || getProfileId()),
+        "/analyses/cashflow-buffer/" +
+          (profileId || getProfileId())
       ).then(unwrap);
     },
+
     analyzeRiskLevel: function (profileId) {
       return request(
-        "/analyses/risk-level/" + (profileId || getProfileId()),
+        "/analyses/risk-level/" +
+          (profileId || getProfileId())
       ).then(unwrap);
     },
+
     getFinancialHealthScore: function (profileId) {
       return request(
-        "/analyses/health-score/" + (profileId || getProfileId()),
+        "/analyses/health-score/" +
+          (profileId || getProfileId())
       ).then(unwrap);
     },
+
     getShortfallForecast: function (profileId, months) {
       var path =
-        "/analyses/shortfall-forecast/" + (profileId || getProfileId());
-      if (months) path += "?months=" + months;
+        "/analyses/shortfall-forecast/" +
+        (profileId || getProfileId());
+
+      if (months) {
+        path += "?months=" + months;
+      }
+
       return request(path).then(unwrap);
     },
+
     getRecommendations: function (profileId) {
       return request(
-        "/analyses/recommendations/" + (profileId || getProfileId()),
+        "/analyses/recommendations/" +
+          (profileId || getProfileId())
       ).then(unwrap);
     },
   };
 
-  // Controllers wrap results as { success, message, data }. Return `data`
-  // when present, otherwise the raw payload.
+  // Controllers wrap results as:
+  // { success, message, data }
   function unwrap(payload) {
-    if (payload && typeof payload === "object" && "data" in payload) {
+    if (
+      payload &&
+      typeof payload === "object" &&
+      "data" in payload
+    ) {
       return payload.data;
     }
+
     return payload;
   }
 
@@ -314,17 +429,25 @@
 
   function requireAuth(loginPath) {
     if (!isAuthed()) {
-      window.location.replace(loginPath || "signin.html");
+      window.location.replace(
+        loginPath || "signin.html"
+      );
+
       return false;
     }
+
     return true;
   }
 
   function redirectIfAuthed(target) {
     if (isAuthed()) {
-      window.location.replace(target || "cashflow-buffer.html");
+      window.location.replace(
+        target || "cashflow-buffer.html"
+      );
+
       return true;
     }
+
     return false;
   }
 
@@ -332,7 +455,9 @@
 
   global.FinGuard = {
     api: api,
+
     ApiError: ApiError,
+
     session: {
       getToken: getToken,
       getUser: getUser,
@@ -341,6 +466,7 @@
       isAuthed: isAuthed,
       clear: clearSession,
     },
+
     requireAuth: requireAuth,
     redirectIfAuthed: redirectIfAuthed,
   };
