@@ -6,7 +6,7 @@
 .settings-page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 35px 45px;
+    padding: 0;
     font-family: "Inter", sans-serif;
     color: #222;
 }
@@ -20,17 +20,17 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
 .settings-header h1 {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 600;
     margin: 0 0 3px;
 }
 
 .settings-header p {
-    font-size: 10px;
+    font-size: 14px;
     color: #999;
     margin: 0;
 }
@@ -46,12 +46,12 @@
    ========================================= */
 
 .settings-list {
-    margin-bottom: 25px;
+    margin-bottom: 14px;
 }
 
 .setting-row {
     width: 100%;
-    min-height: 45px;
+    min-height: 40px;
 
     display: flex;
     align-items: center;
@@ -60,7 +60,7 @@
     border: none;
     border-bottom: 1px solid #eeeeee;
 
-    padding: 7px 12px;
+    padding: 3px 12px;
 
     text-align: left;
     font-family: "Inter", sans-serif;
@@ -78,21 +78,22 @@
    ========================================= */
 
 .setting-icon {
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-right: 8px;
+    margin-right: 12px;
 
-    border-radius: 5px;
+    border-radius: 6px;
 
     background-color: #f1f1f1;
     color: #555;
 
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
@@ -107,15 +108,17 @@
 }
 
 .setting-copy strong {
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 600;
+    line-height: 1.2;
     color: #222;
 }
 
 .setting-copy small {
-    font-size: 7px;
+    font-size: 12px;
+    line-height: 1.2;
     color: #777;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 
@@ -133,7 +136,7 @@
 .setting-end {
     display: flex;
     align-items: center;
-    font-size: 8px;
+    font-size: 13px;
     color: #777;
 }
 
@@ -158,8 +161,8 @@
 .switch {
     position: relative;
 
-    width: 30px;
-    height: 17px;
+    width: 40px;
+    height: 22px;
 
     display: inline-block;
 
@@ -200,11 +203,11 @@
 
     position: absolute;
 
-    width: 13px;
-    height: 13px;
+    width: 17px;
+    height: 17px;
 
-    left: 2px;
-    top: 2px;
+    left: 2.5px;
+    top: 2.5px;
 
     background-color: white;
 
@@ -221,7 +224,7 @@
 }
 
 .switch input:checked + .slider::before {
-    transform: translateX(13px);
+    transform: translateX(18px);
 }
 
 
@@ -230,11 +233,11 @@
    ========================================= */
 
 .toggle-list {
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 .toggle-list .setting-row {
-    min-height: 43px;
+    min-height: 40px;
 }
 
 
@@ -252,7 +255,7 @@
 
     padding: 10px;
 
-    margin-top: 30px;
+    margin-top: 14px;
 }
 
 .tip-icon {
@@ -267,13 +270,13 @@
 }
 
 .settings-tip strong {
-    font-size: 10px;
+    font-size: 14px;
     color: #ff8a25;
     margin-bottom: 2px;
 }
 
 .settings-tip small {
-    font-size: 7px;
+    font-size: 12px;
     color: #777;
 }
 
@@ -339,7 +342,7 @@ body.dark-mode .setting-end {
     }
 
     .settings-header h1 {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     .setting-row {
@@ -355,11 +358,11 @@ body.dark-mode .setting-end {
     }
 
     .setting-copy strong {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .setting-copy small {
-        font-size: 7px;
+        font-size: 11px;
     }
 
     .settings-tip {
