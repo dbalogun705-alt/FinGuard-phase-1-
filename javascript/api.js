@@ -51,10 +51,7 @@
       }
 
       if (data && data.user) {
-        localStorage.setItem(
-          STORAGE.user,
-          JSON.stringify(data.user)
-        );
+        localStorage.setItem(STORAGE.user, JSON.stringify(data.user));
       }
     } catch (e) {
       /* storage unavailable – nothing we can do */
@@ -85,9 +82,7 @@
 
   function ApiError(message, status, payload) {
     this.name = "ApiError";
-    this.message =
-      message ||
-      "Something went wrong. Please try again.";
+    this.message = message || "Something went wrong. Please try again.";
     this.status = status || 0;
     this.payload = payload || null;
   }
@@ -101,8 +96,7 @@
         payload.error ||
         (Array.isArray(payload.errors) &&
           payload.errors[0] &&
-          (payload.errors[0].msg ||
-            payload.errors[0].message)) ||
+          (payload.errors[0].msg || payload.errors[0].message)) ||
         null;
 
       if (m) return m;
@@ -110,8 +104,7 @@
       var s = payload.trim();
 
       var isHtml =
-        /^<(!doctype|html|pre)/i.test(s) ||
-        s.indexOf("<pre>") !== -1;
+        /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
 
       if (s && !isHtml && s.length < 200) {
         return s;
@@ -164,14 +157,12 @@
       method: options.method || "GET",
       headers: headers,
       body:
-        options.body !== undefined
-          ? JSON.stringify(options.body)
-          : undefined,
+        options.body !== undefined ? JSON.stringify(options.body) : undefined,
     })
       .then(function (res) {
         var isJson =
           (res.headers.get("content-type") || "").indexOf(
-            "application/json"
+            "application/json",
           ) !== -1;
 
         return (isJson ? res.json() : res.text())
@@ -187,7 +178,7 @@
               throw new ApiError(
                 messageFrom(payload, res.status),
                 res.status,
-                payload
+                payload,
               );
             }
 
@@ -199,11 +190,7 @@
           throw err;
         }
 
-        throw new ApiError(
-          messageFrom(null, 0),
-          0,
-          null
-        );
+        throw new ApiError(messageFrom(null, 0), 0, null);
       });
   }
 
@@ -335,66 +322,52 @@
     },
 
     getFinancialProfile: function (id) {
-      return request(
-        "/financial-profile/" +
-          (id || getProfileId())
-      ).then(unwrap);
+      return request("/financial-profile/" + (id || getProfileId())).then(
+        unwrap,
+      );
     },
 
     updateFinancialProfile: function (id, profile) {
-      return request(
-        "/financial-profile/" +
-          (id || getProfileId()),
-        {
-          method: "PUT",
-          body: profile,
-        }
-      ).then(unwrap);
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "PUT",
+        body: profile,
+      }).then(unwrap);
     },
 
     deleteFinancialProfile: function (id) {
-      return request(
-        "/financial-profile/" +
-          (id || getProfileId()),
-        {
-          method: "DELETE",
-        }
-      ).then(unwrap);
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "DELETE",
+      }).then(unwrap);
     },
 
     // analyses
     calculateDebtToIncomeRatio: function (profileId) {
       return request(
-        "/analyses/debt-to-income-ratio/" +
-          (profileId || getProfileId())
+        "/analyses/debt-to-income-ratio/" + (profileId || getProfileId()),
       ).then(unwrap);
     },
 
     calculateCashflowBuffer: function (profileId) {
       return request(
-        "/analyses/cashflow-buffer/" +
-          (profileId || getProfileId())
+        "/analyses/cashflow-buffer/" + (profileId || getProfileId()),
       ).then(unwrap);
     },
 
     analyzeRiskLevel: function (profileId) {
       return request(
-        "/analyses/risk-level/" +
-          (profileId || getProfileId())
+        "/analyses/risk-level/" + (profileId || getProfileId()),
       ).then(unwrap);
     },
 
     getFinancialHealthScore: function (profileId) {
       return request(
-        "/analyses/health-score/" +
-          (profileId || getProfileId())
+        "/analyses/health-score/" + (profileId || getProfileId()),
       ).then(unwrap);
     },
 
     getShortfallForecast: function (profileId, months) {
       var path =
-        "/analyses/shortfall-forecast/" +
-        (profileId || getProfileId());
+        "/analyses/shortfall-forecast/" + (profileId || getProfileId());
 
       if (months) {
         path += "?months=" + months;
@@ -405,8 +378,7 @@
 
     getRecommendations: function (profileId) {
       return request(
-        "/analyses/recommendations/" +
-          (profileId || getProfileId())
+        "/analyses/recommendations/" + (profileId || getProfileId()),
       ).then(unwrap);
     },
   };
@@ -414,11 +386,7 @@
   // Controllers wrap results as:
   // { success, message, data }
   function unwrap(payload) {
-    if (
-      payload &&
-      typeof payload === "object" &&
-      "data" in payload
-    ) {
+    if (payload && typeof payload === "object" && "data" in payload) {
       return payload.data;
     }
 
@@ -429,9 +397,7 @@
 
   function requireAuth(loginPath) {
     if (!isAuthed()) {
-      window.location.replace(
-        loginPath || "signin.html"
-      );
+      window.location.replace(loginPath || "signin.html");
 
       return false;
     }
@@ -441,9 +407,7 @@
 
   function redirectIfAuthed(target) {
     if (isAuthed()) {
-      window.location.replace(
-        target || "cashflow-buffer.html"
-      );
+      window.location.replace(target || "cashflow-buffer.html");
 
       return true;
     }
@@ -471,3 +435,4 @@
     redirectIfAuthed: redirectIfAuthed,
   };
 })(window);
+expect(total).toBe(1000);
