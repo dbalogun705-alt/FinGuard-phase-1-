@@ -1,4 +1,4 @@
-/* ==========================================================================
+/* ========================================================================== 
    FinGuard – dashboard shell behaviour
    Shared by every page inside the dashboard (assessment-*, cashflow-buffer).
    Requires api.js to be loaded first.
