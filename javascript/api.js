@@ -77,9 +77,13 @@
 
   function setSession(data) {
     try {
-      if (data && data.token) localStorage.setItem(STORAGE.token, data.token);
-      if (data && data.user)
+      if (data && data.token) {
+        localStorage.setItem(STORAGE.token, data.token);
+      }
+
+      if (data && data.user) {
         localStorage.setItem(STORAGE.user, JSON.stringify(data.user));
+      }
     } catch (e) {
       /* storage unavailable – nothing we can do */
     }
@@ -142,14 +146,29 @@
         (Array.isArray(payload.errors) &&
           payload.errors[0] &&
           (payload.errors[0].msg || payload.errors[0].message)) ||
-        (Array.isArray(payload.error) && payload.error[0]) ||
         null;
       if (m) return m;
     } else if (typeof payload === "string") {
       var s = payload.trim();
-      // Ignore Express' default HTML error pages – never show raw markup.
-      var isHtml = /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
-      if (s && !isHtml && s.length < 200) return s;
+
+      var isHtml =
+        /^<(!doctype|html|pre)/i.test(s) || s.indexOf("<pre>") !== -1;
+
+      if (s && !isHtml && s.length < 200) {
+        return s;
+      }
+    }
+
+    if (status === 0) {
+      return "Cannot reach the server. Check your connection.";
+    }
+
+    if (status === 401) {
+      return "Your session has expired. Please sign in again.";
+    }
+
+    if (status === 404) {
+      return "That feature isn't available on the server yet.";
     }
 
     if (status === 0) return "Cannot reach the server. Check your connection.";
@@ -177,12 +196,15 @@
     return fetch(url, {
       method: options.method || "GET",
       headers: headers,
-      body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+      body:
+        options.body !== undefined ? JSON.stringify(options.body) : undefined,
     })
       .then(function (res) {
-        var isJson = (res.headers.get("content-type") || "").indexOf(
-          "application/json"
-        ) !== -1;
+        var isJson =
+          (res.headers.get("content-type") || "").indexOf(
+            "application/json",
+          ) !== -1;
+
         return (isJson ? res.json() : res.text())
           .catch(function () {
             return null;
@@ -193,15 +215,17 @@
               throw new ApiError(
                 messageFrom(payload, res.status),
                 res.status,
-                payload
+                payload,
               );
             }
             return payload;
           });
       })
       .catch(function (err) {
-        if (err instanceof ApiError) throw err;
-        // network / CORS / DNS failure
+        if (err instanceof ApiError) {
+          throw err;
+        }
+
         throw new ApiError(messageFrom(null, 0), 0, null);
       });
   }
@@ -324,70 +348,84 @@
       });
     },
 
-    getFinancialProfile: function () {
-      var cached = getCachedProfile();
-      if (cached) return Promise.resolve(cached);
-      return Promise.reject(
-        new ApiError(
-          "No financial profile on file yet. Complete the assessment first.",
-          404,
-          null
-        )
+    getFinancialProfile: function (id) {
+      return request("/financial-profile/" + (id || getProfileId())).then(
+        unwrap,
       );
     },
 
-    // ---- analyses (DTI, cashflow buffer, risk level, recommendations) --
-    // POST regenerates a fresh analysis from the user's current profile +
-    // debts. It 404s with a clear message if there is no financial profile.
-    generateAnalysis: function () {
-      return request("/analyses", { method: "POST", body: {} }).then(
-        function (payload) {
-          var data = unwrap(payload);
-          if (data && data.financialProfileId) cacheProfile(data.financialProfileId);
-          return data;
-        }
-      );
-    },
-    getAnalyses: function () {
-      return request("/analyses").then(unwrap);
-    },
-    getLatestAnalysis: function () {
-      return api.getAnalyses().then(function (list) {
-        if (!list || !list.length) return null;
-        // Sort defensively – don't assume the server's ordering.
-        var sorted = list.slice().sort(function (a, b) {
-          return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
-        });
-        var latest = sorted[0];
-        if (latest && latest.financialProfileId) {
-          cacheProfile(latest.financialProfileId);
-        }
-        return latest;
-      });
-    },
-    getAnalysis: function (id) {
-      return request("/analyses/" + id).then(unwrap);
-    },
-    updateAnalysis: function (id, patch) {
-      return request("/analyses/" + id, { method: "PUT", body: patch }).then(
-        unwrap
-      );
-    },
-    deleteAnalysis: function (id) {
-      return request("/analyses/" + id, { method: "DELETE" });
+    updateFinancialProfile: function (id, profile) {
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "PUT",
+        body: profile,
+      }).then(unwrap);
     },
 
-    // ---- notifications ---------------------------------------------------
-    getNotifications: function () {
-      return request("/notifications").then(unwrap);
+    deleteFinancialProfile: function (id) {
+      return request("/financial-profile/" + (id || getProfileId()), {
+        method: "DELETE",
+      }).then(unwrap);
+    },
+
+    // analyses
+    calculateDebtToIncomeRatio: function (profileId) {
+      return request(
+        "/analyses/debt-to-income-ratio/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+
+    calculateCashflowBuffer: function (profileId) {
+      return request(
+        "/analyses/cashflow-buffer/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+
+    analyzeRiskLevel: function (profileId) {
+      return request(
+        "/analyses/risk-level/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+
+    getFinancialHealthScore: function (profileId) {
+      return request(
+        "/analyses/health-score/" + (profileId || getProfileId()),
+      ).then(unwrap);
+    },
+
+    getShortfallForecast: function (profileId, months) {
+      var path =
+        "/analyses/shortfall-forecast/" + (profileId || getProfileId());
+
+      if (months) {
+        path += "?months=" + months;
+      }
+
+      return request(path).then(unwrap);
+    },
+
+    getRecommendations: function (profileId) {
+      return request(
+        "/analyses/recommendations/" + (profileId || getProfileId()),
+      ).then(unwrap);
     },
   };
+
+  // Controllers wrap results as:
+  // { success, message, data }
+  function unwrap(payload) {
+    if (payload && typeof payload === "object" && "data" in payload) {
+      return payload.data;
+    }
+
+    return payload;
+  }
 
   /* -------------------------- route guards ---------------------------- */
 
   function requireAuth(loginPath) {
     if (!isAuthed()) {
       window.location.replace(loginPath || "signin.html");
+
       return false;
     }
     return true;
@@ -396,6 +434,7 @@
   function redirectIfAuthed(target) {
     if (isAuthed()) {
       window.location.replace(target || "cashflow-buffer.html");
+
       return true;
     }
     return false;
@@ -418,3 +457,4 @@
     redirectIfAuthed: redirectIfAuthed,
   };
 })(window);
+expect(total).toBe(1000);
