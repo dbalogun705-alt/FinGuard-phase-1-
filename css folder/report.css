@@ -43,7 +43,7 @@ report-p {
 .reports-list {
   display: grid;
   gap: 18px;
-  width: min(100% - 2rem, 532px);
+  width: min(100% - 2rem, 700px);
   margin-left: 34px;
 }
 
@@ -123,6 +123,6 @@ report-p {
 
 .report-title1 {
   font-family: "Roboto", sans-serif;
-  font-size: 11px;
-  line-height: 1.2;
+  font-size: 13px;
+  line-height: 1.4;
 }

@@ -5,6 +5,36 @@
 
    Base URL : https://finguard-api-n71k.onrender.com/api
    Auth     : JWT bearer token from POST /users/login
+
+   Verified against the live server on 2026-09-19. Endpoints below are the
+   ones that actually exist and respond on production:
+
+     POST   /users/register             { firstName, lastName, email, password }
+     POST   /auth/send-otp              { email }
+     POST   /auth/verify-otp            { email, otp }
+     POST   /auth/resend-otp            { email }
+     POST   /auth/forgot-password       { email }
+     POST   /auth/reset-password        { email, otp, newPassword }  (newPassword >= 12 chars)
+     POST   /users/login                { email, password } -> { token, user }
+
+     GET    /debts
+     POST   /debts                      { lenderName, debtType, outstandingBalance, monthlyRepayment }
+     PUT    /debts/:id
+     DELETE /debts/:id
+
+     POST   /financial-profiles         { monthlyIncome, recurringExpenses, additionalIncome, accountBalance, currency }
+     -- GET/PUT/DELETE /financial-profiles are NOT deployed yet (404). Use the
+        POST response directly, or read the profile back off an analysis
+        (an analysis embeds the full financialProfileId object).
+
+     POST   /analyses                   generate a fresh analysis from the
+                                         user's current profile + debts
+     GET    /analyses                   list past analyses (newest last)
+     GET    /analyses/:id
+     PUT    /analyses/:id               { riskLevel } etc.
+     DELETE /analyses/:id
+
+     GET    /notifications
    ========================================================================== */
 
 (function (global) {
@@ -16,6 +46,7 @@
     token: "fg_token",
     user: "fg_user",
     profileId: "fg_profile_id",
+    profile: "fg_profile_cache",
   };
 
   /* ----------------------------- session ------------------------------- */
@@ -60,10 +91,28 @@
 
   function setProfileId(id) {
     try {
-      if (id) {
-        localStorage.setItem(STORAGE.profileId, id);
+      if (id) localStorage.setItem(STORAGE.profileId, id);
+    } catch (e) {}
+  }
+
+  // The server has no "get my financial profile" route, so we keep the most
+  // recent copy we were handed (from creating it, or from an analysis, which
+  // embeds the full profile) around locally as a best-effort cache.
+  function cacheProfile(profile) {
+    try {
+      if (profile && typeof profile === "object") {
+        localStorage.setItem(STORAGE.profile, JSON.stringify(profile));
+        if (profile._id) setProfileId(profile._id);
       }
     } catch (e) {}
+  }
+
+  function getCachedProfile() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE.profile) || "null");
+    } catch (e) {
+      return null;
+    }
   }
 
   function clearSession() {
@@ -71,6 +120,7 @@
       localStorage.removeItem(STORAGE.token);
       localStorage.removeItem(STORAGE.user);
       localStorage.removeItem(STORAGE.profileId);
+      localStorage.removeItem(STORAGE.profile);
     } catch (e) {}
   }
 
@@ -86,7 +136,6 @@
     this.status = status || 0;
     this.payload = payload || null;
   }
-
   ApiError.prototype = Object.create(Error.prototype);
 
   function messageFrom(payload, status) {
@@ -98,7 +147,6 @@
           payload.errors[0] &&
           (payload.errors[0].msg || payload.errors[0].message)) ||
         null;
-
       if (m) return m;
     } else if (typeof payload === "string") {
       var s = payload.trim();
@@ -123,10 +171,11 @@
       return "That feature isn't available on the server yet.";
     }
 
-    if (status >= 500) {
+    if (status === 0) return "Cannot reach the server. Check your connection.";
+    if (status === 401) return "Your session has expired. Please sign in again.";
+    if (status === 404) return "That feature isn't available on the server yet.";
+    if (status >= 500)
       return "The server had a problem with that request. Please try again later.";
-    }
-
     return "Request failed (" + status + ").";
   }
 
@@ -134,23 +183,14 @@
 
   function request(path, options) {
     options = options || {};
-
     var url = BASE_URL + path;
+    var headers = { Accept: "application/json" };
 
-    var headers = {
-      Accept: "application/json",
-    };
-
-    if (options.body !== undefined) {
-      headers["Content-Type"] = "application/json";
-    }
+    if (options.body !== undefined) headers["Content-Type"] = "application/json";
 
     if (options.auth !== false) {
       var token = getToken();
-
-      if (token) {
-        headers.Authorization = "Bearer " + token;
-      }
+      if (token) headers.Authorization = "Bearer " + token;
     }
 
     return fetch(url, {
@@ -171,17 +211,13 @@
           })
           .then(function (payload) {
             if (!res.ok) {
-              if (res.status === 401) {
-                clearSession();
-              }
-
+              if (res.status === 401) clearSession();
               throw new ApiError(
                 messageFrom(payload, res.status),
                 res.status,
                 payload,
               );
             }
-
             return payload;
           });
       })
@@ -194,13 +230,22 @@
       });
   }
 
+  // Controllers wrap results as { success, message, data }. Return `data`
+  // when present, otherwise the raw payload.
+  function unwrap(payload) {
+    if (payload && typeof payload === "object" && "data" in payload) {
+      return payload.data;
+    }
+    return payload;
+  }
+
   /* ----------------------------- resources ---------------------------- */
 
   var api = {
     baseUrl: BASE_URL,
     request: request,
 
-    // auth
+    // ---- auth --------------------------------------------------------
     register: function (data) {
       return request("/users/register", {
         method: "POST",
@@ -218,9 +263,15 @@
       return request("/auth/send-otp", {
         method: "POST",
         auth: false,
-        body: {
-          email: data.email,
-        },
+        body: { email: data.email },
+      }).then(unwrap);
+    },
+
+    resendOtp: function (data) {
+      return request("/auth/resend-otp", {
+        method: "POST",
+        auth: false,
+        body: { email: data.email },
       }).then(unwrap);
     },
 
@@ -228,95 +279,71 @@
       return request("/auth/verify-otp", {
         method: "POST",
         auth: false,
+        body: { email: data.email, otp: data.otp },
+      }).then(function (payload) {
+        var result = unwrap(payload);
+        if (result && result.token) setSession(result);
+        return result;
+      });
+    },
+
+    forgotPassword: function (data) {
+      return request("/auth/forgot-password", {
+        method: "POST",
+        auth: false,
+        body: { email: data.email },
+      }).then(unwrap);
+    },
+
+    resetPassword: function (data) {
+      return request("/auth/reset-password", {
+        method: "POST",
+        auth: false,
         body: {
           email: data.email,
           otp: data.otp,
+          newPassword: data.newPassword,
         },
-      }).then(function (payload) {
-        var result = unwrap(payload);
-
-        if (result && result.token) {
-          setSession(result);
-        }
-
-        return result;
-      });
+      }).then(unwrap);
     },
 
     login: function (data) {
       return request("/users/login", {
         method: "POST",
         auth: false,
-        body: {
-          email: data.email,
-          password: data.password,
-        },
+        body: { email: data.email, password: data.password },
       }).then(function (payload) {
         setSession(payload);
         return payload;
       });
     },
 
-    // debts
+    // ---- debts ---------------------------------------------------------
     getDebts: function () {
       return request("/debts").then(unwrap);
     },
-
     createDebt: function (debt) {
-      return request("/debts", {
-        method: "POST",
-        body: debt,
-      }).then(unwrap);
+      return request("/debts", { method: "POST", body: debt }).then(unwrap);
     },
-
     updateDebt: function (id, debt) {
-      return request("/debts/" + id, {
-        method: "PUT",
-        body: debt,
-      }).then(unwrap);
+      return request("/debts/" + id, { method: "PUT", body: debt }).then(unwrap);
     },
-
     deleteDebt: function (id) {
-      return request("/debts/" + id, {
-        method: "DELETE",
-      });
+      return request("/debts/" + id, { method: "DELETE" });
     },
 
-    // financial profile
+    // ---- financial profile ---------------------------------------------
+    // NOTE: there is no working "get my profile" route on the server yet
+    // (GET /financial-profiles 404s). createFinancialProfile caches the
+    // full object it gets back so the rest of the app can read it locally;
+    // getFinancialProfile() falls back to that cache.
     createFinancialProfile: function (profile) {
-      return request("/financial-profile", {
-        method: "POST",
-        body: profile,
-      }).then(function (payload) {
-        var data = unwrap(payload);
-
-        if (data && data._id) {
-          setProfileId(data._id);
-        }
-
-        return data;
-      });
-    },
-
-    /*
-     * ADDED FOR ASSESSMENT EXPENSES
-     *
-     * The Postman documentation shows:
-     * POST /api/financial-profiles
-     *
-     * This is kept separate from the original teammate function above.
-     */
-    createAssessmentFinancialProfile: function (profile) {
       return request("/financial-profiles", {
         method: "POST",
         body: profile,
       }).then(function (payload) {
         var data = unwrap(payload);
-
-        if (data && data._id) {
-          setProfileId(data._id);
-        }
-
+        cacheProfile(data);
         return data;
       });
     },
@@ -401,7 +428,6 @@
 
       return false;
     }
-
     return true;
   }
 
@@ -411,7 +437,6 @@
 
       return true;
     }
-
     return false;
   }
 
@@ -419,9 +444,7 @@
 
   global.FinGuard = {
     api: api,
-
     ApiError: ApiError,
-
     session: {
       getToken: getToken,
       getUser: getUser,
@@ -430,7 +453,6 @@
       isAuthed: isAuthed,
       clear: clearSession,
     },
-
     requireAuth: requireAuth,
     redirectIfAuthed: redirectIfAuthed,
   };

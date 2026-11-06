@@ -46,7 +46,7 @@
     <header class="top-header">
 
         <div>
-            <h1>Good Morning, John</h1>
+            <h1 id="greetingName">Good Morning</h1>
             <p>Here is your Financial Health Score</p>
         </div>
 
@@ -64,9 +64,18 @@
 
     </header>
 
+    <!-- EMPTY STATE: shown until the user has completed the assessment -->
+    <section class="fg-card p-4 text-center mb-4 d-none" id="overviewEmpty">
+        <h5 class="fw-bold mb-2">Let's build your financial picture</h5>
+        <p class="text-muted small mb-3">
+            Complete the assessment to see your income, obligations, DTI and
+            cashflow buffer here.
+        </p>
+        <a href="assessment-income.html" class="btn btn-orange px-4">Start Assessment</a>
+    </section>
 
     <!-- FINANCIAL HEALTH SCORE -->
-    <section class="health-section">
+    <section class="health-section overview-data-section">
 
         <div class="section-heading">
 
@@ -92,9 +101,10 @@
                     d="M 20 100 A 80 80 0 0 1 180 100"
                 />
 
-                <!-- Blue 75% -->
+                <!-- Blue fill, width set from the risk level -->
                 <path
                     class="gauge-progress"
+                    id="gaugeProgress"
                     d="M 20 100 A 80 80 0 0 1 180 100"
                     pathLength="100"
                 />
@@ -103,13 +113,13 @@
 
             <div class="gauge-content">
 
-                <strong>75%</strong>
+                <strong id="healthScoreValue">—</strong>
 
-                <span>Good</span>
+                <span id="healthScoreLabel">—</span>
 
             </div>
 
-            <p>You're on track. Keep it up</p>
+            <p id="healthScoreNote">Complete your assessment to see this.</p>
 
         </div>
 
@@ -117,14 +127,14 @@
 
 
     <!-- FINANCIAL INFORMATION -->
-    <section class="financial-info">
+    <section class="financial-info overview-data-section">
 
         <div class="financial-item">
 
             <h6>Monthly Income</h6>
 
-            <h3 class="green-text">
-                ₦1,250,000
+            <h3 class="green-text" id="incomeValue">
+                —
             </h3>
 
             <small>This month</small>
@@ -136,8 +146,8 @@
 
             <h6>Total Obligations</h6>
 
-            <h3 class="orange-text">
-                ₦115,500
+            <h3 class="orange-text" id="obligationsValue">
+                —
             </h3>
 
             <small>This month</small>
@@ -149,11 +159,11 @@
 
             <h6>Cashflow Buffer</h6>
 
-            <h3 class="green-text">
-                ₦630,000
+            <h3 class="green-text" id="bufferValue">
+                —
             </h3>
 
-            <small>3.2 Months</small>
+            <small id="bufferNote">Per month</small>
 
         </div>
 
@@ -162,12 +172,12 @@
 
             <h6>DTI Ratio</h6>
 
-            <h3 class="green-text">
-                0.75
+            <h3 class="green-text" id="dtiValue">
+                —
             </h3>
 
-            <small class="moderate">
-                Moderate
+            <small class="moderate" id="dtiLabel">
+                —
             </small>
 
         </div>
@@ -180,17 +190,16 @@
 
 
         <!-- RECENT ALERT -->
-        <div class="recent-alert">
+        <div class="recent-alert overview-data-section">
 
             <h3>Recent Alert</h3>
 
             <div class="alert-line"></div>
 
-            <h5>Cash buffer is getting thin</h5>
+            <h5 id="alertHeading">Everything looks steady</h5>
 
-            <p>
-                Your current buffer may not cover more
-                than 2 months expenses.
+            <p id="alertText">
+                No risk factors detected yet.
             </p>
 
             <button class="details-button" id="alertDetails">
@@ -263,9 +272,9 @@
 
 <!-- JavaScript -->
   <script src="../javascript/api.js"></script>
-  <script src="../javascript/dashboard.js"></script> 
-<script src="overview.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+  <script src="../javascript/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+  <script src="../javascript/overview.js"></script>
         
     </body>
 </html>

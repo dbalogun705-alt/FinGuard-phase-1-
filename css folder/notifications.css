@@ -45,7 +45,7 @@ body {
 
     background: #ffffff;
 
-    padding: 20px 25px;
+    padding: 14px 25px;
 
     font-family: Arial, sans-serif;
 
@@ -60,7 +60,7 @@ body {
 
 .notify-topbar {
 
-    height: 35px;
+    height: 26px;
 
     display: flex;
 
@@ -97,7 +97,7 @@ body {
 
 .notify-heading h1 {
 
-    font-size: 16px;
+    font-size: 26px;
 
     font-weight: 600;
 
@@ -110,13 +110,13 @@ body {
 
 .notify-heading p {
 
-    font-size: 11px;
+    font-size: 14px;
 
     color: #999999;
 
     margin-top: 1px;
 
-    margin-bottom: 13px;
+    margin-bottom: 8px;
 
 }
 
@@ -150,7 +150,7 @@ body {
 
     padding: 0 0 7px 0;
 
-    font-size: 10px;
+    font-size: 14px;
 
     color: #666666;
 
@@ -178,7 +178,7 @@ body {
 
     color: #666666;
 
-    font-size: 10px;
+    font-size: 13px;
 
     cursor: pointer;
 
@@ -207,13 +207,13 @@ body {
 
 .notify-date {
 
-    font-size: 10px;
+    font-size: 14px;
 
     color: #555555;
 
-    margin-top: 19px;
+    margin-top: 8px;
 
-    margin-bottom: 11px;
+    margin-bottom: 4px;
 
 }
 
@@ -226,7 +226,7 @@ body {
 
     width: 100%;
 
-    min-height: 48px;
+    min-height: 46px;
 
     border: 1px solid #eeeeee;
 
@@ -234,7 +234,7 @@ body {
 
     align-items: center;
 
-    padding: 5px 9px;
+    padding: 5px 14px;
 
     box-sizing: border-box;
 
@@ -258,9 +258,9 @@ body {
 
 .notify-icon {
 
-    width: 20px;
+    width: 30px;
 
-    height: 20px;
+    height: 30px;
 
     border-radius: 50%;
 
@@ -272,14 +272,14 @@ body {
 
     flex-shrink: 0;
 
-    margin-right: 10px;
+    margin-right: 12px;
 
 }
 
 
 .notify-icon i {
 
-    font-size: 11px;
+    font-size: 14px;
 
 }
 
@@ -345,9 +345,11 @@ body {
 
     margin: 0;
 
-    font-size: 11px;
+    font-size: 15px;
 
     font-weight: 600;
+
+    line-height: 1.2;
 
     color: #222222;
 
@@ -358,7 +360,9 @@ body {
 
     margin: 2px 0 0 0;
 
-    font-size: 8px;
+    font-size: 13px;
+
+    line-height: 1.2;
 
     color: #999999;
 
@@ -373,9 +377,9 @@ body {
 
     text-align: right;
 
-    min-width: 80px;
+    min-width: 110px;
 
-    margin-left: 5px;
+    margin-left: 8px;
 
 }
 
@@ -384,9 +388,11 @@ body {
 
     display: block;
 
-    font-size: 9px;
+    font-size: 14px;
 
     font-weight: 400;
+
+    line-height: 1.2;
 
     color: #555555;
 
@@ -404,7 +410,9 @@ body {
 
     display: block;
 
-    font-size: 7px;
+    font-size: 12px;
+
+    line-height: 1.2;
 
     color: #999999;
 
@@ -419,7 +427,7 @@ body {
 
 .notify-arrow {
 
-    font-size: 11px;
+    font-size: 14px;
 
     color: #555555;
 
@@ -449,7 +457,7 @@ body {
 
     color: #2222ff;
 
-    font-size: 8px;
+    font-size: 13px;
 
     cursor: pointer;
 
@@ -458,7 +466,7 @@ body {
 
 .notify-older button i {
 
-    font-size: 8px;
+    font-size: 13px;
 
     margin-left: 4px;
 

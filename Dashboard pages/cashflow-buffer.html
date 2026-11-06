@@ -140,113 +140,121 @@
         </div>
 
         <div class="dashboard-content">
-          <!--
-          TODO(backend): the gauge value, the "Monthly Cashflow" percentages and
-          the After Obligations / Monthly Outflow figures below are still static.
-          Wire them once the backend team confirms the cashflow-buffer formula
-          or exposes a dedicated endpoint. The "Upcoming Obligations" list IS
-          live (GET /api/debts) via javascript/cashflow.js.
-        -->
-          <div class="row g-4">
-            <!-- Left: gauge + metrics -->
-            <div class="col-lg-5">
-              <div class="fg-card p-4 mb-4 text-center">
-                <h5 class="text-start section-label buffer-card-title mb-3">
-                  Cashflow Buffer
-                </h5>
-                <div class="gauge my-2">
-                  <svg viewBox="0 0 36 36">
-                    <path
-                      fill="none"
-                      stroke="#e9ecef"
-                      stroke-width="3.4"
-                      d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31"
-                    />
-                    <path
-                      fill="none"
-                      stroke="#25c989"
-                      stroke-width="3.4"
-                      stroke-linecap="round"
-                      stroke-dasharray="78, 100"
-                      d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31"
-                    />
-                  </svg>
-                  <div class="gauge-center">
-                    <span class="gauge-value">3.2</span>
-                    <span class="gauge-unit">Months</span>
-                  </div>
-                </div>
-                <p class="text-muted small m-0 mt-2">Buffer is Healthy 👍</p>
-              </div>
-
-              <div class="fg-card p-3">
-                <div class="list-row">
-                  <span class="text-muted">After Obligations</span
-                  ><span class="fw-semibold">₦630,000</span>
-                </div>
-                <div class="list-row">
-                  <span class="text-muted">Monthly Outflow</span
-                  ><span class="fw-semibold">₦305,000</span>
-                </div>
-                <div class="list-row">
-                  <span class="text-muted">Months Covered</span
-                  ><span class="fw-semibold">3.2 Months</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: breakdown + obligations -->
-            <div class="col-lg-7">
-              <h5 class="section-label">Monthly Cashflow</h5>
-              <div class="progress cashflow-bar mb-3">
-                <div class="progress-bar seg-debt"></div>
-                <div class="progress-bar seg-expenses"></div>
-                <div class="progress-bar seg-buffer"></div>
-              </div>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
-              >
-                <span class="d-inline-flex align-items-center gap-2"
-                  ><span class="dot dot-red"></span>Debt Payment 45.6%</span
-                >
-                <span class="fw-semibold">₦630,000</span>
-              </div>
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
-              >
-                <span class="d-inline-flex align-items-center gap-2"
-                  ><span class="dot dot-amber"></span>Living Expenses
-                  22.6%</span
-                >
-                <span class="fw-semibold">₦630,000</span>
-              </div>
-              <div
-                class="d-flex justify-content-between align-items-center mb-4"
-              >
-                <span class="d-inline-flex align-items-center gap-2"
-                  ><span class="dot dot-green"></span>Buffer Available
-                  31.8%</span
-                >
-                <span class="fw-semibold">₦630,000</span>
-              </div>
-
-              <h5 class="section-label">Upcoming Obligations</h5>
-              <div class="fg-card p-0">
-                <ul class="list-group list-group-flush" id="obligationsList">
-                  <li class="list-group-item text-muted small py-3">
-                    Loading obligations…
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <!-- Empty state: shown until the user has a saved financial profile -->
+          <div class="fg-card p-4 text-center mb-4 d-none" id="bufferEmpty">
+            <h5 class="fw-bold mb-2">No cashflow data yet</h5>
+            <p class="text-muted small mb-3">
+              Complete the assessment so we can calculate your buffer.
+            </p>
+            <a href="assessment-income.html" class="btn btn-orange px-4"
+              >Start Assessment</a
+            >
           </div>
 
-          <div class="mt-4">
-            <p class="fw-semibold text-muted mb-2">How is this Calculated?</p>
-            <div class="alert formula-note mb-3">
-              Buffer = (Income − Obligations) / Monthly Outflow
+          <div id="bufferData" class="d-none">
+            <div class="row g-4">
+              <!-- Left: gauge + metrics -->
+              <div class="col-lg-5">
+                <div class="fg-card p-4 mb-4 text-center">
+                  <h5 class="text-start section-label buffer-card-title mb-3">
+                    Cashflow Buffer
+                  </h5>
+                  <div class="gauge my-2">
+                    <svg viewBox="0 0 36 36">
+                      <path
+                        fill="none"
+                        stroke="#e9ecef"
+                        stroke-width="3.4"
+                        d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31"
+                      />
+                      <path
+                        fill="none"
+                        stroke="#25c989"
+                        stroke-width="3.4"
+                        stroke-linecap="round"
+                        stroke-dasharray="0, 100"
+                        id="bufferGauge"
+                        d="M18 2.5 a 15.5 15.5 0 0 1 0 31 a 15.5 15.5 0 0 1 0 -31"
+                      />
+                    </svg>
+                    <div class="gauge-center">
+                      <span class="gauge-value" id="bufferMonths">—</span>
+                      <span class="gauge-unit">Months</span>
+                    </div>
+                  </div>
+                  <p class="text-muted small m-0 mt-2" id="bufferStatus">—</p>
+                </div>
+
+                <div class="fg-card p-3">
+                  <div class="list-row">
+                    <span class="text-muted">After Obligations</span
+                    ><span class="fw-semibold" id="afterObligations">—</span>
+                  </div>
+                  <div class="list-row">
+                    <span class="text-muted">Monthly Outflow</span
+                    ><span class="fw-semibold" id="monthlyOutflow">—</span>
+                  </div>
+                  <div class="list-row">
+                    <span class="text-muted">Months Covered</span
+                    ><span class="fw-semibold" id="monthsCovered">—</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: breakdown + obligations -->
+              <div class="col-lg-7">
+                <h5 class="section-label">Monthly Cashflow</h5>
+                <div class="progress cashflow-bar mb-3">
+                  <div class="progress-bar seg-debt" id="segDebt"></div>
+                  <div class="progress-bar seg-expenses" id="segExpenses"></div>
+                  <div class="progress-bar seg-buffer" id="segBuffer"></div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="d-inline-flex align-items-center gap-2"
+                    ><span class="dot dot-red"></span>Debt Payment
+                    <span id="debtPct">—</span></span
+                  >
+                  <span class="fw-semibold" id="debtAmount">—</span>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="d-inline-flex align-items-center gap-2"
+                    ><span class="dot dot-amber"></span>Living Expenses
+                    <span id="expensesPct">—</span></span
+                  >
+                  <span class="fw-semibold" id="expensesAmount">—</span>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4"
+                >
+                  <span class="d-inline-flex align-items-center gap-2"
+                    ><span class="dot dot-green"></span>Buffer Available
+                    <span id="bufferPct">—</span></span
+                  >
+                  <span class="fw-semibold" id="bufferAmount">—</span>
+                </div>
+
+                <h5 class="section-label">Upcoming Obligations</h5>
+                <div class="fg-card p-0">
+                  <ul class="list-group list-group-flush" id="obligationsList">
+                    <li class="list-group-item text-muted small py-3">
+                      Loading obligations…
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-blue px-4 py-2">Learn More &rarr;</button>
+
+            <div class="mt-4">
+              <p class="fw-semibold text-muted mb-2">How is this Calculated?</p>
+              <div class="alert formula-note mb-3">
+                Buffer = Income − (Debt Payments + Living Expenses). Months
+                Covered = Cash Balance ÷ Monthly Outflow.
+              </div>
+            </div>
           </div>
         </div>
       </main>
